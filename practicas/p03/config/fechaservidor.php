@@ -1,5 +1,5 @@
 <?php 
 
-echo date(SATE_ATOM);
+echo date(DATE_ATOM);
 
 ?>
