@@ -106,25 +106,35 @@
 
     <?php
     
-    function ejercicio4 (){
+    global $a, $b, $c, $z;
+        $a = "PHP5";
+        echo "<li>Valor de \$a = PHP5:\n";
+        var_dump($a);
+        
+        $z[] = &$a;
+        echo "<li>Valor de \$z = &$a:\n";
+        var_dump($z);
 
-      global $a, $z, $b, $c;
-      echo '<br>';
-      echo "El valor de la variable a es $a";
-      echo '<br>';
-      echo "El valor de la variable z es $z";
-      echo '<br>';
-      echo "El valor de la variable b es$b";
-      echo '<br>';
-      echo "El valor de la variable c es$c";
+        $b = "5a version de PHP";
+        echo "<li>Valor de \$b = '5a version de PHP':\n";
+        var_dump($b);     
 
-    }
-    
-    ejercicio4();
-    unset($a);
-    unset($b);
-    unset($c);
-    unset($z);
+        @$c = $b * 10;
+        echo "<li>Valor de \$c * 10:\n";
+        var_dump($c);
+
+        $a .= $b;
+        echo "<li>Valor de \$a .= $b:\n";
+        var_dump($a);
+
+        $b *= $c;
+        echo "<li>Valor de \$a *= $c:\n";
+        var_dump($a);
+
+        $z[0] = "MySQL";
+        echo "<li>Valor de \$z = MySQL:\n";
+        var_dump($z);
+        
 
     ?>
 
@@ -169,6 +179,14 @@
     echo '<li>$f = ($a XOR $b)</li>';
 
     echo '</ul>';
+
+
+    $a = "0";
+    $b = "TRUE";
+    $c = FALSE;
+    $d = ($a OR $b);
+    $e = ($a AND $c);
+    $f = ($a XOR $b);
 
 
     var_dump ((bool)$a);
