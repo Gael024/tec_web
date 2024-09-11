@@ -109,10 +109,10 @@
 
       global $a, $z, $b, $c;
 
-      echo $a;
-      echo $z;
-      echo $b;
-      echo $c;
+      echo "El valor de la variable a es $a";
+      echo "El valor de la variable z es $z";
+      echo "El valor de la variable b es$b";
+      echo "El valor de la variable c es$c";
 
     }
     
