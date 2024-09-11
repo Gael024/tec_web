@@ -189,12 +189,17 @@
     $f = ($a XOR $b);
 
 
-    var_dump ((bool)$a);
-    var_dump ((bool)$b);
-    var_dump ($c);
-    var_dump ($d);
-    var_dump ($e);
-    var_dump ($f);
+   echo "Valor de a". var_dump ((bool)$a);
+    echo'<br>';
+   echo "Valor de b". var_dump ((bool)$b);
+    echo'<br>';
+    echo "Valor de c". var_dump ($c);
+    echo'<br>';
+   echo "Valor de d". var_dump  ($d);
+    echo'<br>';
+   echo "Valor de e". var_dump ($e);
+    echo'<br>';
+   echo "Valor de f". var_dump ($f);
   
 
        ?>
