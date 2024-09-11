@@ -146,8 +146,39 @@
     
         <br>
     
+       <?php
+
+       
+    echo '<ul>';
+    echo '<li>$a = "0"</li>';
+    echo '<li>$b = "TRUE"</li>';
+    echo '<li>$c = "FALSE"</li>';
+    echo '<li>$d = ($a OR $b)</li>';
+    echo '<li>$e = ($a AND $c)</li>';
+    echo '<li>$f = ($a XOR $b)</li>';
+
+    echo '</ul>';
+
+
+    var_dump ($a);
+    var_dump ($b);
+    var_dump ($c);
+    var_dump ($d);
+    var_dump ($e);
+    var_dump ($f);
+  
+
+       ?>
+
         <p>Despues investiga una función de PHP que permita transformar el valor booleano de $c y $e en uno que 
           se pueda mostrar con un echo:</p>
+
+    <?php
+    
+    echo "Valor de la variable <b>c</b> = ". var_export($c,true);
+    echo "Valor de la variable <b>e</b> =". var_export($e,true);
+
+    ?>
    
 </body>
 </html>
