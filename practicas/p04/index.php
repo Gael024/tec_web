@@ -52,10 +52,9 @@
      
      $a = "PHP server";
      $b = &$a;
-     echo '<br>';
+    
      echo '<h4>C. Vuelve a mostar el contenido de cada uno</h4>';
 
-     echo '<br>';
      echo $a;
      echo '<br>';
      echo $b;
@@ -64,7 +63,6 @@
 
      echo '<br>';
      echo '<h4>D. Describe y muestra que ocurrio en el segundo bloque de asignaciones</h4>';
-     echo '<br>';
      echo '<p>En el primer bloque de asignaciones tanto la variable "a" como "b" tiene como valor una cadena de texto y la 
      variable "c" tiene el valor de la variable "a", por ello al mostrar el contenido de las variables, "a" y "c" muestran la 
      misma cadena. En el segundo bloque de asignaciones se cambia la cadena de texto que tiene la variable "a" y a la variable "b"
