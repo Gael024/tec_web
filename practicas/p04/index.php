@@ -120,5 +120,24 @@
 
     ?>
 
+
+    <h2>Ejercicio 5</h2>
+    <p> Dar el valor de las variables $a, $b, $c al final del siguinte script </p>
+
+    <?php
+    
+    echo '<ul>';
+    echo '<li>$a = "7 personas"</li>';
+    echo '<li>$b = (interger) $a</li>';
+    echo '<li>$a = "9E3"</li>';
+    echo '<li>$c = (double) $a</li>';
+    echo '</ul>';
+
+    echo "Valor de la variable a =  9E3";
+    echo "Valor de la variable b =  7 personas";
+    echo "Valor de la variable c =  0.0";
+
+    ?>
+   
 </body>
 </html>
