@@ -118,7 +118,7 @@
     $b = "5a version de PHP";
     @$c = $b*10;
     $a .= $b;
-    $b *= $c;
+    @$b *= $c;
     $z[0] = "MySQL";
 
     echo "<li>Valor de \$a: " . $GLOBALS['a'] . "</li>\n";  
