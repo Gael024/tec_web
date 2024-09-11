@@ -114,7 +114,7 @@
     global $a, $b, $c, $z;
         $a = "PHP5";
         echo "<li>Valor de \$a = PHP5:\n";
-        var_dump($a);
+        echo $a;
         
         $z[] = &$a;
         echo "<li>Valor de \$z = &$a:\n";
