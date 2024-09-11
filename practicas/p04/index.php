@@ -159,9 +159,9 @@
     echo '<br>';
     echo "Valor de la variable a =  9E3";
     echo '<br>';
-    echo "Valor de la variable b =  7 personas";
+    echo "Valor de la variable b =  7 ";
     echo '<br>';
-    echo "Valor de la variable c =  0.0";
+    echo "Valor de la variable c = 9000";
 
     ?>
 
