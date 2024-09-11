@@ -108,10 +108,13 @@
     function ejercicio4 (){
 
       global $a, $z, $b, $c;
-
+      echo '<br>';
       echo "El valor de la variable a es $a";
+      echo '<br>';
       echo "El valor de la variable z es $z";
+      echo '<br>';
       echo "El valor de la variable b es$b";
+      echo '<br>';
       echo "El valor de la variable c es$c";
 
     }
@@ -132,9 +135,12 @@
     echo '<li>$a = "9E3"</li>';
     echo '<li>$c = (double) $a</li>';
     echo '</ul>';
-
+    
+    echo '<br>';
     echo "Valor de la variable a =  9E3";
+    echo '<br>';
     echo "Valor de la variable b =  7 personas";
+    echo '<br>';
     echo "Valor de la variable c =  0.0";
 
     ?>
@@ -192,7 +198,9 @@
   <?php
 
 echo '<b>Versión de Apache y PHP</b>'. $_SERVER['SERVER_SOFTWARE'];
+echo '<br>';
 echo '<b>Nombre del sistema operativo</b>'. PHP_OS;
+echo '<br>';
 echo '<b>Idioma del navegador</b>'. $_SERVER['HTTP_ACCEPT_LANGUAGE'];
 
    
