@@ -138,6 +138,16 @@
     echo "Valor de la variable c =  0.0";
 
     ?>
+
+    
+    <h2>Ejercicio 6</h2>
+    <p> Dar y comprobar el valor boolenano de las variables $a, $b, $c, $d, $e y $f y muestralas usando la función 
+        var_dump(<datos>)</p>
+    
+        <br>
+    
+        <p>Despues investiga una función de PHP que permita transformar el valor booleano de $c y $e en uno que 
+          se pueda mostrar con un echo:</p>
    
 </body>
 </html>
