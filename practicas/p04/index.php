@@ -97,6 +97,7 @@
     print_r($z); 
 
     
+    
     ?>
 
     <h2>Ejercicio 4</h2>
@@ -120,6 +121,10 @@
     }
     
     ejercicio4();
+    unset($a);
+    unset($b);
+    unset($c);
+    unset($z);
 
     ?>
 
@@ -183,6 +188,14 @@
     
     echo "Valor de la variable <b>c</b> = ". var_export($c,true);
     echo "Valor de la variable <b>e</b> =". var_export($e,true);
+
+    unset($a);
+    unset($b);
+    unset($c);
+    unset($d);
+    unset($e);
+    unset($f);
+
 
     ?>
    
