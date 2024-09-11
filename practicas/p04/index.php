@@ -87,11 +87,11 @@
     print_r ($z);
     $b = "5a version de PHP";
     echo $b;
-    $c = $b*10;
+    @$c = $b*10;
     echo $c;
     $a .= $b;
     echo $a;
-    $b *= $c;
+    @$b *= $c;
     echo $b;
     $z[0] = "MySQL";
     print_r($z); 
@@ -166,8 +166,8 @@
     echo '</ul>';
 
 
-    var_dump ($a);
-    var_dump ($b);
+    var_dump ((bool)$a);
+    var_dump ((bool)$b);
     var_dump ($c);
     var_dump ($d);
     var_dump ($e);
