@@ -31,5 +31,9 @@
         nombre, lo cual es incorrecto, ya que no se permiten caracteres especiales en los nombres de las variables .</li>';
         echo '</ul>';
     ?>
+ 
+     <h2>Ejercicio 2</h2>
+     <p>Proporcionar los valores de $a, $b, $c como sigue:</p> 
+
 </body>
 </html>
