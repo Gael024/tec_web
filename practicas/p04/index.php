@@ -21,13 +21,14 @@
         echo '<h4>Respuesta:</h4>';   
     
         echo '<ul>';
-        echo '<li>$_myvar es válida porque inicia con guión bajo.</li>';
-        echo '<li>$_7var es válida porque inicia con guión bajo.</li>';
-        echo '<li>myvar es inválida porque no tiene el signo de dolar ($).</li>';
-        echo '<li>$myvar es válida porque inicia con una letra.</li>';
-        echo '<li>$var7 es válida porque inicia con una letra.</li>';
-        echo '<li>$_element1 es válida porque inicia con guión bajo.</li>';
-        echo '<li>$house*5 es inválida porque el símbolo * no está permitido.</li>';
+        echo '<li><b>$_myvar</b> Es valida ya que inica con "$" y el primer caracter es un guión bajo.</li>';
+        echo '<li><b>$_7var</b> Es valida ya que inica con "$" y el primer caracter es un guión bajo.</li>';
+        echo '<li><b>myvar</b> No es valida ya que no tiene el simbolo "$".</li>';
+        echo '<li><b>$myvar</b> Es valida; tiene el simbolo "$" y su primer caracter es una letra.</li>';
+        echo '<li><b>$var7</b> Es válida porque inicia con una letra y tiene sl simbolo "$".</li>';
+        echo '<li><b>$_element1</b> Es válida porque inicia con guión bajo y tiene el simbolo "$".</li>';
+        echo '<li><b>$house*5</b> No es valida, si bien si tiene el simbolo "$" y comienza con una letra, tiene un "*" en su
+        nombre, lo cual es incorrecto, ya que no se permiten caracteres especiales en los nombres de las variables .</li>';
         echo '</ul>';
     ?>
 </body>
