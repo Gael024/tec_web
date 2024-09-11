@@ -82,19 +82,24 @@
     
     <?php
     $a = "PHP5";
-    echo $a;
+    echo " Valor de a = $a";
+    echo '<br>';
     $z [] = &$a;
-    print_r ($z);
+    echo "Valor de z". print_r ($z);
+    echo '<br>';
     $b = "5a version de PHP";
-    echo $b;
+    echo "Valor de b = $b";
+    echo '<br>';
     @$c = $b*10;
-    echo $c;
+    echo "Valor de C =$c";
+    echo '<br>';
     $a .= $b;
-    echo $a;
+    echo "Valor de a=  $a";
+    echo 'br>';
     @$b *= $c;
-    echo $b;
+    echo "Valor de b $b";
     $z[0] = "MySQL";
-    print_r($z); 
+    echo "Valor de z". print_r($z); 
 
     
     
@@ -127,7 +132,7 @@
         echo "<li>Valor de \$a .= $b:\n";
         var_dump($a);
 
-        $b *= $c;
+        @$b *= $c;
         echo "<li>Valor de \$a *= $c:\n";
         var_dump($a);
 
