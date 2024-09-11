@@ -69,10 +69,56 @@
      se le da el valor de la variable "a"; cuando volvemos a mostrar el contenido de las variables, todas muestran la misma cadena
      de texto, ya que a la variable "a" se le ha asignado de forma directa y tanto "b" como "c" tiene el valor de "a". </p>';
 
-
+     
+     unset($a);
+     unset($b);
+     unset($c);
      ?>
 
+     <h2>Ejercicio 3</h2>
+     <p>Muestra el contenido de cada variabla inmediatamente despues de cada asignación, verificar la evolución del tipo de 
+        estas variables (imprime todos los componentes de los arreglos):
+     </p> 
+    
+    <?php
+    $a = "PHP5";
+    echo $a;
+    $z [] = &$a;
+    print_r ($z);
+    $b = "5a version de PHP";
+    echo $b;
+    $c = $b*10;
+    echo $c;
+    $a .= $b;
+    echo $a;
+    $b *= $c;
+    echo $b;
+    $z[0] = "MySQL";
+    print_r($z); 
 
     
+    ?>
+
+    <h2>Ejercicio 4</h2>
+    <p> Lee y muestra los valores de las variables del ejercicio anterior, pero ahora con la ayuda de la matriz $GLOBALS o del 
+   modificador global de php. </p>
+
+    <?php
+    
+    function ejercicio4 (){
+
+      global $a, $z, $b, $c;
+
+      echo $a;
+      echo $z;
+      echo $b;
+      echo $c;
+
+    }
+    
+    ejercicio4();
+
+    ?>
+
 </body>
 </html>
