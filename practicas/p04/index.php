@@ -110,35 +110,23 @@
    modificador global de php. </p>
 
     <?php
+    echo '<ul>';
+
     
-    global $a, $b, $c, $z;
-        $a = "PHP5";
-        echo "<li>Valor de \$a = PHP5:\n";
-        echo $a;
-        
-        $z[] = &$a;
-        echo "<li>Valor de \$z = &$a:\n";
-        var_dump($z);
+    $a = "PHP5";
+    $z[] = &$a;
+    $b = "5a version de PHP";
+    @$c = $b*10;
+    $a .= $b;
+    $b *= $c;
+    $z[0] = "MySQL";
 
-        $b = "5a version de PHP";
-        echo "<li>Valor de \$b = '5a version de PHP':\n";
-        var_dump($b);     
-
-        @$c = $b * 10;
-        echo "<li>Valor de \$c * 10:\n";
-        var_dump($c);
-
-        $a .= $b;
-        echo "<li>Valor de \$a .= $b:\n";
-        var_dump($a);
-
-        @$b *= $c;
-        echo "<li>Valor de \$a *= $c:\n";
-        var_dump($a);
-
-        $z[0] = "MySQL";
-        echo "<li>Valor de \$z = MySQL:\n";
-        var_dump($z);
+    echo "<li>Valor de \$a: " . $GLOBALS['a'] . "</li>\n";  
+    echo "<li>Valor de \$b: " . $GLOBALS['b'] . "</li>\n";  
+    echo "<li>Valor de \$c: " . $GLOBALS['c'] . "</li>\n";  
+    echo "<li>Valor de \$z[0]: " . $GLOBALS['z'][0] . "</li>\n";
+    
+    echo '</ul>';
         
 
     ?>
