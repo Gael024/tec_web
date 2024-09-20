@@ -229,7 +229,7 @@ echo "</table>";
 
     <h2>Ejercicio 6</h2>
 <p>Crea en código duro un arreglo asociativo que sirva para registrar el parque vehicular de una ciudad. Cada vejiculo debe 
-    ser identificador por:
+    ser identificador por: </p> 
         <ul>
 
        <li>Matricual</li>
@@ -259,7 +259,193 @@ echo "</table>";
 
 
         </ul>
-</p> 
+
+
+
+    <?php
+
+$Datos_generales = array(
+    "   ZZZ0000" => array(
+        "Auto" => array(
+            "Marca" => "Audi",
+            "Modelo" => 2012,
+            "Tipo" => "hachback"
+        ),
+        "Propietario" => array(
+            "Nombre" => "Erwin",
+            "Ciudad" => "Nochixtlán",
+            "Dirección" => "Bugambilias 3"
+        )
+    ),
+    "yyy1111" => array(
+        "Auto" => array(
+            "Marca" => "Audi",
+            "Modelo" => 2016,
+            "Tipo" => "sedan"
+        ),
+        "Propietario" => array(
+            "Nombre" => "Gael",
+            "Ciudad" => "Oaxaca",
+            "Dirección" => "Colonia Jardin"
+        )
+    ),
+    "WWW2222" => array(
+        "Auto" => array(
+            "Marca" => "Audi",
+            "Modelo" => 2020,
+            "Tipo" => "Camioneta"
+        ),
+        "Propietario" => array(
+            "Nombre" => "Rivaldo",
+            "Ciudad" => "Puebla",
+            "Dirección" => "Avenida universidad"
+        )
+    ),
+
+    "WWW2222" => array(
+        "Auto" => array(
+            "Marca" => "Audi",
+            "Modelo" => 2020,
+            "Tipo" => "Camioneta"
+        ),
+        "Propietario" => array(
+            "Nombre" => "Rivaldo",
+            "Ciudad" => "Puebla",
+            "Dirección" => "Avenida universidad"
+        )
+    ), "WWW2222" => array(
+        "Auto" => array(
+            "Marca" => "Audi",
+            "Modelo" => 2020,
+            "Tipo" => "Camioneta"
+        ),
+        "Propietario" => array(
+            "Nombre" => "Rivaldo",
+            "Ciudad" => "Puebla",
+            "Dirección" => "Avenida universidad"
+        )
+    ), "WWW2222" => array(
+        "Auto" => array(
+            "Marca" => "Audi",
+            "Modelo" => 2020,
+            "Tipo" => "Camioneta"
+        ),
+        "Propietario" => array(
+            "Nombre" => "Rivaldo",
+            "Ciudad" => "Puebla",
+            "Dirección" => "Avenida universidad"
+        )
+    ), "WWW2222" => array(
+        "Auto" => array(
+            "Marca" => "Audi",
+            "Modelo" => 2020,
+            "Tipo" => "Camioneta"
+        ),
+        "Propietario" => array(
+            "Nombre" => "Rivaldo",
+            "Ciudad" => "Puebla",
+            "Dirección" => "Avenida universidad"
+        )
+    ), "WWW2222" => array(
+        "Auto" => array(
+            "Marca" => "Audi",
+            "Modelo" => 2020,
+            "Tipo" => "Camioneta"
+        ),
+        "Propietario" => array(
+            "Nombre" => "Rivaldo",
+            "Ciudad" => "Puebla",
+            "Dirección" => "Avenida universidad"
+        )
+    ), "WWW2222" => array(
+        "Auto" => array(
+            "Marca" => "Audi",
+            "Modelo" => 2020,
+            "Tipo" => "Camioneta"
+        ),
+        "Propietario" => array(
+            "Nombre" => "Rivaldo",
+            "Ciudad" => "Puebla",
+            "Dirección" => "Avenida universidad"
+        )
+    ), "WWW2222" => array(
+        "Auto" => array(
+            "Marca" => "Audi",
+            "Modelo" => 2020,
+            "Tipo" => "Camioneta"
+        ),
+        "Propietario" => array(
+            "Nombre" => "Rivaldo",
+            "Ciudad" => "Puebla",
+            "Dirección" => "Avenida universidad"
+        )
+    ), "WWW2222" => array(
+        "Auto" => array(
+            "Marca" => "Audi",
+            "Modelo" => 2020,
+            "Tipo" => "Camioneta"
+        ),
+        "Propietario" => array(
+            "Nombre" => "Rivaldo",
+            "Ciudad" => "Puebla",
+            "Dirección" => "Avenida universidad"
+        )
+    ),
+    "WWW2222" => array(
+        "Auto" => array(
+            "Marca" => "Audi",
+            "Modelo" => 2020,
+            "Tipo" => "Camioneta"
+        ),
+        "Propietario" => array(
+            "Nombre" => "Rivaldo",
+            "Ciudad" => "Puebla",
+            "Dirección" => "Avenida universidad"
+        )
+    ),"WWW2222" => array(
+        "Auto" => array(
+            "Marca" => "Audi",
+            "Modelo" => 2020,
+            "Tipo" => "Camioneta"
+        ),
+        "Propietario" => array(
+            "Nombre" => "Rivaldo",
+            "Ciudad" => "Puebla",
+            "Dirección" => "Avenida universidad"
+        )
+    ),"WWW2222" => array(
+        "Auto" => array(
+            "Marca" => "Audi",
+            "Modelo" => 2020,
+            "Tipo" => "Camioneta"
+        ),
+        "Propietario" => array(
+            "Nombre" => "Rivaldo",
+            "Ciudad" => "Puebla",
+            "Dirección" => "Avenida universidad"
+        )
+    ),"WWW2222" => array(
+        "Auto" => array(
+            "Marca" => "Audi",
+            "Modelo" => 2020,
+            "Tipo" => "Camioneta"
+        ),
+        "Propietario" => array(
+            "Nombre" => "Rivaldo",
+            "Ciudad" => "Puebla",
+            "Dirección" => "Avenida universidad"
+        )
+    ),
+
+
+
+);
+
+print_r($Datos_generales);
+
+    ?>
+
+
 
 
 </body>
