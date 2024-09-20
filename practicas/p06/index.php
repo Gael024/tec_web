@@ -113,7 +113,7 @@ ejercicio4();
 
      if($sexo == "Femenino" && $edad>=18 && $edad <=35){
 
-        echo "El sistema ha validado sus datos, usted comple con los requistos";
+        echo "El sistema ha validado sus datos, usted cumple con los requistos";
 
      }
 
@@ -357,7 +357,45 @@ print_r($Datos_generales);
     ?>
 
 
+<form action="http://localhost/tec_web/practicas/p06/index.php" method="post">
+          
+<p>Matricula: <input type="text" name="matricula" ></p>
+<input type="submit" value="Consultar" name="consultar">         
+                
+<input type="hidden" name="todos" value="1">
+<input type="submit" value="Mostrar Todos los Autos" name="mostrar_todos">
+          
+</form>
+    
+<?php
+     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (isset($_POST['consultar'])) {
+            $matricula = $_POST['matricula'];
+            if (isset($Parque_Vehicular[$matricula])) {
+                $vehiculo = $Parque_Vehicular[$matricula];
+                echo "<h2>Información del Auto</h2>";
+                echo "<p><strong>Matrícula:</strong> $matricula</p>";
+                echo "<p><strong>Marca:</strong> {$vehiculo['Auto']['marca']}</p>";
+                echo "<p><strong>Modelo:</strong> {$vehiculo['Auto']['modelo']}</p>";
+                echo "<p><strong>Tipo:</strong> {$vehiculo['Auto']['tipo']}</p>";
+                echo "<p><strong>Propietario:</strong> {$vehiculo['Propietario']['nombre']}</p>";
+            } else {
+                echo "<p>Matrícula no encontrada.</p>";
+            }
+        }
 
+        if (isset($_POST['mostrar_todos'])) {
+            echo "<h2>Todos los Autos Registrados</h2>";
+            foreach ($Parque_Vehicular as $matricula => $vehiculo) {
+                echo "<p><strong>Matrícula:</strong> $matricula | ";
+                echo "<strong>Marca:</strong> {$vehiculo['Auto']['marca']} | ";
+                echo "<strong>Modelo:</strong> {$vehiculo['Auto']['modelo']} | ";
+                echo "<strong>Tipo:</strong> {$vehiculo['Auto']['tipo']} | ";
+                echo "<strong>Propietario:</strong> {$vehiculo['Propietario']['nombre']}</p>";
+            }
+        }
+    }
+?>
 
 </body>
 </html>
