@@ -371,8 +371,8 @@ print_r($Datos_generales);
      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($_POST['consultar'])) {
             $matricula = $_POST['matricula'];
-            if (isset($Parque_Vehicular[$matricula])) {
-                $vehiculo = $Parque_Vehicular[$matricula];
+            if (isset($Datos_generales[$matricula])) {
+                $vehiculo = $Datos_generales[$matricula];
                 echo "<h2>Información del Auto</h2>";
                 echo "<p><strong>Matrícula:</strong> $matricula</p>";
                 echo "<p><strong>Marca:</strong> {$vehiculo['Auto']['marca']}</p>";
@@ -386,7 +386,7 @@ print_r($Datos_generales);
 
         if (isset($_POST['mostrar_todos'])) {
             echo "<h2>Todos los Autos Registrados</h2>";
-            foreach ($Parque_Vehicular as $matricula => $vehiculo) {
+            foreach ($Datos_generales as $matricula => $vehiculo) {
                 echo "<p><strong>Matrícula:</strong> $matricula | ";
                 echo "<strong>Marca:</strong> {$vehiculo['Auto']['marca']} | ";
                 echo "<strong>Modelo:</strong> {$vehiculo['Auto']['modelo']} | ";
