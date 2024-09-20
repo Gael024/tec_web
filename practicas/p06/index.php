@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Práctica 4</title>
+    <title>Práctica 6</title>
 </head>
 <body>
     <h2>Ejercicio 1</h2>
@@ -173,6 +173,93 @@ foreach($Almacen as $key => $value){
 echo "</table>";
 
 ?>
+
+
+<h2>Ejercicio 5</h2>
+<p>Usar las variables "edad" y "sexo" en una instrucción "if" para identificar una persona de sexo femenino, cuya edad oscile 
+    entre los 18 y 35 años y mostrar un mensaje de bienvenida; en caso contrario deberá devolverse otro mensaje indicando el error.</p> 
+
+<!--  FORMULARIO HTML -->
+
+    <form  action="http://localhost/tec_web/practicas/p06/index.php" method="post">
+
+   <label for = "edad">Edad:</label>
+   <input type="number" name="edad"></input required>
+   <br>
+
+   <label for="sexo">Sexo: </label>
+       <select name="sexo" size="1" required>
+
+       <option value="Masculino">Masculino</option>
+       <option value="Femenino">Femenino</option>
+
+       </select>
+
+
+    </form>
+
+    <?php
+
+     echo "Validación de datos";
+
+     if($sexo == "Femenino" && $edad>=18 && $edad <=35){
+
+        echo "El sistema ha validado sus datos, usted comple con los requistos";
+
+     }
+
+     else {
+
+        echo "Acceso denegado, usted no cumple con los requistos solictados";
+     }
+
+     ?>
+
+    <!-- 
+    
+    <form action="http://localhost/tecweb/practicas/p04/index.php" method="post">
+        Name: <input type="text" name="name"><br>
+        E-mail: <input type="text" name="email"><br>
+        <input type="submit">
+    </form>
+    
+    -->
+
+
+
+    <h2>Ejercicio 6</h2>
+<p>Crea en código duro un arreglo asociativo que sirva para registrar el parque vehicular de una ciudad. Cada vejiculo debe 
+    ser identificador por:
+        <ul>
+
+       <li>Matricual</li>
+       <li>Auto
+
+             <ul>
+
+              <li>Marca</li>
+              <li>Modelo(año)</li>
+              <li>Tipo(seda|hachback|camioneta)</li>
+
+
+             </ul>
+
+       </li>
+       <li>Propietario
+
+            <ul>
+
+              <li>Nombre</li>
+              <li>Ciudad</li>
+              <li>Dirección</li>
+
+            </ul>
+
+       </li>
+
+
+        </ul>
+</p> 
 
 
 </body>
