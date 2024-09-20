@@ -86,7 +86,7 @@ function ejercicio3(){
    
         }
    
-        echo "Primer número entero multiplo de $N_dado : $N_aleatorio";
+        echo "El primer número entero multiplo de $N_dado  es : $N_aleatorio";
    
 
     }
