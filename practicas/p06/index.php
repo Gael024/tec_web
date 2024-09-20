@@ -6,23 +6,23 @@
     <title>Práctica 6</title>
 </head>
 <body>
+
+
+   <?php
+
+  include 'src/funciones.php';  
+
+   ?>
+
+
     <h2>Ejercicio 1</h2>
     <p>Escribir programa para comprobar si un número es un múltiplo de 5 y 7</p>
     <?php
-        if(isset($_GET['numero']))
-        {
-            $num = $_GET['numero'];
-            if ($num%5==0 && $num%7==0)
-            {
-                echo '<h3>R= El número '.$num.' SÍ es múltiplo de 5 y 7.</h3>';
-            }
-            else
-            {
-                echo '<h3>R= El número '.$num.' NO es múltiplo de 5 y 7.</h3>';
-            }
-        }
+       
+       ejercicio1();
     ?>
 
+<!--
     <h2>Ejemplo de POST</h2>
     <form action="http://localhost/tecweb/practicas/p04/index.php" method="post">
         Name: <input type="text" name="name"><br>
@@ -30,14 +30,20 @@
         <input type="submit">
     </form>
     <br>
+    -->
+    
     <?php
+    /*
         if(isset($_POST["name"]) && isset($_POST["email"]))
         {
             echo $_POST["name"];
             echo '<br>';
             echo $_POST["email"];
         }
+            */
     ?>
+    
+    
 
 <h2>Ejercicio 2</h2>
 <p>Crea un programa para la generación repetitiva de 3 números aleatorios hasta obtener una secuencia compuesta por 
@@ -45,48 +51,7 @@
 
     <?php
 
-    $Numeros = [];
-    $Contador_I=0;
-    $Contador_N =0;
-
-    do {
-
-    $Numero1= rand(100,999);
-    $Numero2= rand(100,999);
-    $Numero3=rand(100,999);
-
-    $Numeros [] = [$Numero1,$Numero2,$Numero3];
-
-    $Contador_I ++;
-    $Contador_N +=3;
-
-
-    }while (!($Numero1%2!==0 && $Numero2%2==0 && $Numero3%2!==0));
-
-    
-
-    echo "<p>Estos números deben almacenarse en una matriz de Mx3, donde M es el número de filas y 3 el número de columnas. Al finalizar
-        muestra el número de iteraciones y la cantidad de números generados.
-    </p>";
-
-     echo "<br>";
-
-    echo "Matriz obtenida";
-    echo "<br>";
-
-
-    
-    for ($i=0; $i<count($Numeros); $i++){
-
-        echo implode (" ", $Numeros[$i]);
-        echo "<br>";
-
-    }
-        
-
-    echo "Número de iteraciones: $Contador_I";
-    echo "<br>";
-    echo "Numeros generados: $Contador_N";
+    ejercicio2();
 
     ?>
 
@@ -97,41 +62,7 @@
 
     <?php
 
-     $N_dado = 9;
-     $N_aleatorio = 0;
-
-     while ( $N_aleatorio == 0 ||$N_aleatorio%$N_dado !=0){
-
-        $N_aleatorio = rand(1,1000);
-
-        echo "Numero obtenido: $N_aleatorio";
-        echo "<br>";
-
-     }
-
-     echo "Primer número entero multiplo de $N_dado : $N_aleatorio";
-
-     /* VARIANTE DO-WHILE*/
-
-    /*------------------ */
-     
-     $N_dado=9;
-     $N_aleatorio = 0;
-
-     do{
-
-     $N_aleatorio = rand(1,1000);
-
-     echo "Numero obtenido: $N_aleatorio";
-     echo "<br>";
-
-
-     }while($N_aleatorio%$N_dado !=0);
-     
-     echo "Primer número entero multiplo de $N_dado : $N_aleatorio";
-
-     
-    /*------------------ */
+     ejercicio3();
 
     ?>
 
@@ -141,36 +72,7 @@ que devuelve el caracter cuyo código ASCII es "n" para poner el valor en cada i
 
 <?php
 
-$Almacen = [];
-
-for($i=97; $i<=122; $i++){
-
-    $Almacen[$i] = chr($i);
-
-}
-
-echo "<table border = '1'>";
-
-    echo "<tr>";
-
-           echo "<th>Código ASCII</th>";
-           echo "<th>Caracter</th>";
-
-    echo "</tr>";
-
-
-foreach($Almacen as $key => $value){
-
-    echo "<tr>";
-
-          echo "<td>. $key .</td>";
-          echo "<td>. $value .</td>";
-
-    echo "</tr>";
-
-}
-
-echo "</table>";
+ejercicio4();
 
 ?>
 
@@ -265,7 +167,7 @@ echo "</table>";
     <?php
 
 $Datos_generales = array(
-    "   ZZZ0000" => array(
+    "ZZZ0000" => array(
         "Auto" => array(
             "Marca" => "Audi",
             "Modelo" => 2012,
@@ -302,138 +204,138 @@ $Datos_generales = array(
         )
     ),
 
-    "WWW2222" => array(
+    "VVV3333" => array(
         "Auto" => array(
-            "Marca" => "Audi",
-            "Modelo" => 2020,
+            "Marca" => "BMW",
+            "Modelo" => 2010,
             "Tipo" => "Camioneta"
         ),
         "Propietario" => array(
-            "Nombre" => "Rivaldo",
+            "Nombre" => "Leonardo",
             "Ciudad" => "Puebla",
-            "Dirección" => "Avenida universidad"
+            "Dirección" => "14 Sur"
         )
-    ), "WWW2222" => array(
+    ), "UUU4444" => array(
         "Auto" => array(
-            "Marca" => "Audi",
-            "Modelo" => 2020,
-            "Tipo" => "Camioneta"
+            "Marca" => "BMW",
+            "Modelo" => 2018,
+            "Tipo" => "camioneta"
         ),
         "Propietario" => array(
-            "Nombre" => "Rivaldo",
-            "Ciudad" => "Puebla",
-            "Dirección" => "Avenida universidad"
+            "Nombre" => "Ignacio",
+            "Ciudad" => "Huajuapan",
+            "Dirección" => "18 poniente"
         )
-    ), "WWW2222" => array(
+    ), "TTT5555" => array(
         "Auto" => array(
-            "Marca" => "Audi",
-            "Modelo" => 2020,
-            "Tipo" => "Camioneta"
+            "Marca" => "Honda",
+            "Modelo" => 2009,
+            "Tipo" => "seda"
         ),
         "Propietario" => array(
-            "Nombre" => "Rivaldo",
-            "Ciudad" => "Puebla",
-            "Dirección" => "Avenida universidad"
+            "Nombre" => "Damian",
+            "Ciudad" => "Orizaba",
+            "Dirección" => "5 de mayo"
         )
-    ), "WWW2222" => array(
+    ), "SSS6666" => array(
         "Auto" => array(
-            "Marca" => "Audi",
-            "Modelo" => 2020,
-            "Tipo" => "Camioneta"
+            "Marca" => "Honda",
+            "Modelo" => 2015,
+            "Tipo" => "hachback"
         ),
         "Propietario" => array(
-            "Nombre" => "Rivaldo",
-            "Ciudad" => "Puebla",
-            "Dirección" => "Avenida universidad"
+            "Nombre" => "Luis",
+            "Ciudad" => "Ciudad Juarez",
+            "Dirección" => "Independencia 6"
         )
-    ), "WWW2222" => array(
+    ), "RRR7777" => array(
         "Auto" => array(
-            "Marca" => "Audi",
-            "Modelo" => 2020,
-            "Tipo" => "Camioneta"
+            "Marca" => "Ford",
+            "Modelo" => 2021,
+            "Tipo" => "hachback"
         ),
         "Propietario" => array(
-            "Nombre" => "Rivaldo",
-            "Ciudad" => "Puebla",
-            "Dirección" => "Avenida universidad"
+            "Nombre" => "Fernando",
+            "Ciudad" => "CDMX",
+            "Dirección" => "Villa universitaria"
         )
-    ), "WWW2222" => array(
+    ), "QQQ7777" => array(
         "Auto" => array(
-            "Marca" => "Audi",
-            "Modelo" => 2020,
+            "Marca" => "Ford",
+            "Modelo" => 2022,
             "Tipo" => "Camioneta"
         ),
         "Propietario" => array(
-            "Nombre" => "Rivaldo",
+            "Nombre" => "Amaury",
             "Ciudad" => "Puebla",
-            "Dirección" => "Avenida universidad"
+            "Dirección" => "Calle trujano"
         )
-    ), "WWW2222" => array(
+    ), "PPP8888" => array(
         "Auto" => array(
-            "Marca" => "Audi",
-            "Modelo" => 2020,
-            "Tipo" => "Camioneta"
+            "Marca" => "Ferrari",
+            "Modelo" => 2024,
+            "Tipo" => "hachback"
         ),
         "Propietario" => array(
-            "Nombre" => "Rivaldo",
+            "Nombre" => "Darinel",
             "Ciudad" => "Puebla",
-            "Dirección" => "Avenida universidad"
+            "Dirección" => "San Martín"
         )
-    ), "WWW2222" => array(
+    ), "NNN9999" => array(
         "Auto" => array(
-            "Marca" => "Audi",
-            "Modelo" => 2020,
-            "Tipo" => "Camioneta"
+            "Marca" => "Ferrari",
+            "Modelo" => 2015,
+            "Tipo" => "seda"
         ),
         "Propietario" => array(
-            "Nombre" => "Rivaldo",
-            "Ciudad" => "Puebla",
-            "Dirección" => "Avenida universidad"
+            "Nombre" => "Armando",
+            "Ciudad" => "Nochixtlán",
+            "Dirección" => "22 sur"
         )
     ),
-    "WWW2222" => array(
+    "MMM1112" => array(
         "Auto" => array(
-            "Marca" => "Audi",
-            "Modelo" => 2020,
-            "Tipo" => "Camioneta"
+            "Marca" => "Tesla",
+            "Modelo" => 2017,
+            "Tipo" => "seda"
         ),
         "Propietario" => array(
-            "Nombre" => "Rivaldo",
-            "Ciudad" => "Puebla",
-            "Dirección" => "Avenida universidad"
+            "Nombre" => "Axel",
+            "Ciudad" => "Tamazulapan",
+            "Dirección" => "lomas"
         )
-    ),"WWW2222" => array(
+    ),"LLL2223" => array(
         "Auto" => array(
-            "Marca" => "Audi",
-            "Modelo" => 2020,
+            "Marca" => "Tesla",
+            "Modelo" => 2019,
             "Tipo" => "Camioneta"
         ),
         "Propietario" => array(
-            "Nombre" => "Rivaldo",
-            "Ciudad" => "Puebla",
-            "Dirección" => "Avenida universidad"
+            "Nombre" => "Antonio",
+            "Ciudad" => "Monterrey",
+            "Dirección" => "Felix Día 4"
         )
-    ),"WWW2222" => array(
+    ),"JJJ3334" => array(
         "Auto" => array(
-            "Marca" => "Audi",
-            "Modelo" => 2020,
-            "Tipo" => "Camioneta"
+            "Marca" => "Nissan",
+            "Modelo" => 2015,
+            "Tipo" => "hachback"
         ),
         "Propietario" => array(
-            "Nombre" => "Rivaldo",
-            "Ciudad" => "Puebla",
-            "Dirección" => "Avenida universidad"
+            "Nombre" => "Brayan",
+            "Ciudad" => "Monterrey",
+            "Dirección" => "Privada 14"
         )
-    ),"WWW2222" => array(
+    ),"EEE4534" => array(
         "Auto" => array(
-            "Marca" => "Audi",
+            "Marca" => "Nissan",
             "Modelo" => 2020,
-            "Tipo" => "Camioneta"
+            "Tipo" => "seda"
         ),
         "Propietario" => array(
-            "Nombre" => "Rivaldo",
+            "Nombre" => "Angel",
             "Ciudad" => "Puebla",
-            "Dirección" => "Avenida universidad"
+            "Dirección" => "Barrio la Peña"
         )
     ),
 
