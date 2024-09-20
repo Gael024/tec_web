@@ -117,10 +117,12 @@ ejercicio4();
 
      }
 
-     else {
+     if(!($sexo == "Femenino" && $edad>=18 && $edad <=35)){
 
         echo "Acceso denegado, usted no cumple con los requistos solictados";
+
      }
+     
 
      ?>
 
