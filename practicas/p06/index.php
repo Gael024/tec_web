@@ -105,6 +105,8 @@ ejercicio4();
     </form>
 
     <?php
+        $sexo = $_POST['sexo'];
+        $edad = $_POST['edad'];
 
      echo "Validación de datos";
 
