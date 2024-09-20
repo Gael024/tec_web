@@ -135,5 +135,45 @@
 
     ?>
 
+<h2>Ejercicio 4</h2>
+<p>Crear un arreglo cuyos indices van de 97 a 122 y cuyos valores son de las letras de la "a" a la "z". Usa la función <b>chr(n)</b>
+que devuelve el caracter cuyo código ASCII es "n" para poner el valor en cada indice</p> 
+
+<?php
+
+$Almacen = [];
+
+for($i=97; $i<=122; $i++){
+
+    $Almacen[$i] = chr($i);
+
+}
+
+echo "<table border = '1'>";
+
+    echo "<tr>";
+
+           echo "<th>Código ASCII</th>";
+           echo "<th>Caracter</th>";
+
+    echo "</tr>";
+
+
+foreach($Almacen as $key => $value){
+
+    echo "<tr>";
+
+          echo "<td>. $key .</td>";
+          echo "<td>. $value .</td>";
+
+    echo "</tr>";
+
+}
+
+echo "</table>";
+
+?>
+
+
 </body>
 </html>
