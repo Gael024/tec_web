@@ -95,23 +95,31 @@ function ejercicio3(){
      /* VARIANTE DO-WHILE*/
 
     /*------------------ */
-     
+   
     /*
-     $N_dado=9;
-     $N_aleatorio = 0;
+    if(isset($_GET['numerodado'])){
 
-     do{
+   
+        $N_dado=$_GET ['numerodado'];
+        $N_aleatorio = 0;
+   
+        do{
+   
+        $N_aleatorio = rand(1,1000);
+   
+        echo "Numero obtenido: $N_aleatorio";
+        echo "<br>";
+   
+   
+        }while($N_aleatorio%$N_dado !=0);
+        
+        echo "Primer número entero multiplo de $N_dado : $N_aleatorio";
 
-     $N_aleatorio = rand(1,1000);
 
-     echo "Numero obtenido: $N_aleatorio";
-     echo "<br>";
+    }
+    
+    */
 
-
-     }while($N_aleatorio%$N_dado !=0);
-     
-     echo "Primer número entero multiplo de $N_dado : $N_aleatorio";
-*/
      
     /*------------------ */
 
