@@ -95,5 +95,45 @@
 <p>Utiliza un ciclo while para encontrar el primer número entero obtenido aleatoriamente, pero que ademas sea multiplo
     de un número dado</p> 
 
+    <?php
+
+     $N_dado = 9;
+     $N_aleatorio = 0;
+
+     while ( $N_aleatorio == 0 ||$N_aleatorio%$N_dado !=0){
+
+        $N_aleatorio = rand(1,1000);
+
+        echo "Numero obtenido: $N_aleatorio";
+        echo "<br>";
+
+     }
+
+     echo "Primer número entero multiplo de $N_dado : $N_aleatorio";
+
+     /* VARIANTE DO-WHILE*/
+
+    /*------------------ */
+     
+     $N_dado=9;
+     $N_aleatorio = 0;
+
+     do{
+
+     $N_aleatorio = rand(1,1000);
+
+     echo "Numero obtenido: $N_aleatorio";
+     echo "<br>";
+
+
+     }while($N_aleatorio%$N_dado !=0);
+     
+     echo "Primer número entero multiplo de $N_dado : $N_aleatorio";
+
+     
+    /*------------------ */
+
+    ?>
+
 </body>
 </html>
