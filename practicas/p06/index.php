@@ -367,18 +367,20 @@ print_r($Datos_generales);
           
 </form>
     
+
+Copiar código
 <?php
-     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($_POST['consultar'])) {
             $matricula = $_POST['matricula'];
             if (isset($Datos_generales[$matricula])) {
                 $vehiculo = $Datos_generales[$matricula];
                 echo "<h2>Información del Auto</h2>";
-                echo "<p><strong>Matrícula:</strong> $matricula</p>";
-                echo "<p><strong>Marca:</strong> {$vehiculo['Auto']['marca']}</p>";
-                echo "<p><strong>Modelo:</strong> {$vehiculo['Auto']['modelo']}</p>";
-                echo "<p><strong>Tipo:</strong> {$vehiculo['Auto']['tipo']}</p>";
-                echo "<p><strong>Propietario:</strong> {$vehiculo['Propietario']['nombre']}</p>";
+                echo "<p><strong>Matrícula:</strong> $matricula</p>";     
+                echo "<p><strong>Marca:</strong> {$vehiculo['Auto']['Marca']}</p>";
+                echo "<p><strong>Modelo:</strong> {$vehiculo['Auto']['Modelo']}</p>";
+                echo "<p><strong>Tipo:</strong> {$vehiculo['Auto']['Tipo']}</p>";
+                echo "<p><strong>Propietario:</strong> {$vehiculo['Propietario']['Nombre']}</p>";
             } else {
                 echo "<p>Matrícula no encontrada.</p>";
             }
@@ -388,10 +390,10 @@ print_r($Datos_generales);
             echo "<h2>Todos los Autos Registrados</h2>";
             foreach ($Datos_generales as $matricula => $vehiculo) {
                 echo "<p><strong>Matrícula:</strong> $matricula | ";
-                echo "<strong>Marca:</strong> {$vehiculo['Auto']['marca']} | ";
-                echo "<strong>Modelo:</strong> {$vehiculo['Auto']['modelo']} | ";
-                echo "<strong>Tipo:</strong> {$vehiculo['Auto']['tipo']} | ";
-                echo "<strong>Propietario:</strong> {$vehiculo['Propietario']['nombre']}</p>";
+                echo "<strong>Marca:</strong> {$vehiculo['Auto']['Marca']} | ";
+                echo "<strong>Modelo:</strong> {$vehiculo['Auto']['Modelo']} | ";
+                echo "<strong>Tipo:</strong> {$vehiculo['Auto']['Tipo']} | ";
+                echo "<strong>Propietario:</strong> {$vehiculo['Propietario']['Nombre']}</p>";
             }
         }
     }
