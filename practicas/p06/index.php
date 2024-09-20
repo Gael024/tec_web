@@ -97,6 +97,10 @@ ejercicio4();
 
        </select>
 
+    <br>
+
+    <p><input type="submit" value="Enviar">
+    <input type="reset" value="Limpiar"></p>
 
     </form>
 
