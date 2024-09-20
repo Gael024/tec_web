@@ -109,6 +109,7 @@ ejercicio4();
         $edad = $_POST['edad'];
 
      echo "Validación de datos";
+     echo "<br>";
 
      if($sexo == "Femenino" && $edad>=18 && $edad <=35){
 
