@@ -74,22 +74,24 @@ function ejercicio3(){
 
     if(isset($_GET['numerodado'])){
 
+        $N_dado = $_GET ['numerodado'];
+        $N_aleatorio = 0;
+   
+        while ( $N_aleatorio == 0 ||$N_aleatorio%$N_dado !=0){
+   
+           $N_aleatorio = rand(1,1000);
+   
+           echo "Numero obtenido: $N_aleatorio";
+           echo "<br>";
+   
+        }
+   
+        echo "Primer número entero multiplo de $N_dado : $N_aleatorio";
+   
+
     }
 
-    $N_dado = $_GET ['numerodado'];
-     $N_aleatorio = 0;
-
-     while ( $N_aleatorio == 0 ||$N_aleatorio%$N_dado !=0){
-
-        $N_aleatorio = rand(1,1000);
-
-        echo "Numero obtenido: $N_aleatorio";
-        echo "<br>";
-
-     }
-
-     echo "Primer número entero multiplo de $N_dado : $N_aleatorio";
-
+    
      /* VARIANTE DO-WHILE*/
 
     /*------------------ */
