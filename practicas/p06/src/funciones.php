@@ -72,8 +72,11 @@ function ejercicio2 (){
 
 function ejercicio3(){
 
+    if(isset($_GET['numerodado'])){
 
-    $N_dado = 9;
+    }
+
+    $N_dado = $_GET ['numerodado'];
      $N_aleatorio = 0;
 
      while ( $N_aleatorio == 0 ||$N_aleatorio%$N_dado !=0){
