@@ -18,14 +18,14 @@
 		}
 
 		/** Crear una tabla que no devuelve un conjunto de resultados */
-		if ( $result = $link->query("SELECT * FROM productos WHERE unidades  <= $tope") ) 
-		{
-			$row = $result->fetch_all(MYSQLI_ASSOC);
+		 $result = $link->query("SELECT * FROM productos WHERE unidades  <= $tope") 
+		
+			//$row = $result->fetch_array(MYSQLI_ASSOC);
 			/** útil para liberar memoria asociada a un resultado con demasiada información */
-			$result->free();
-		}
+			//
+		
 
-		$link->close();
+		
 	}
 	?>
 	<head>
@@ -54,24 +54,46 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<th scope="row"><?= $row['unidades'] ?></th>
-						<td><?= $row['nombre'] ?></td>
-						<td><?= $row['marca'] ?></td>
-						<td><?= $row['modelo'] ?></td>
-						<td><?= $row['precio'] ?></td>
-						<td><?= $row['unidades'] ?></td>
-						<td><?= utf8_encode($row['detalles']) ?></td>
-						<td><img src=<?= $row['imagen'] ?> ></td>
-					</tr>
-				</tbody>
-			</table>
 
-		<?php elseif(!empty($id)) : ?>
+                  <?php
+
+                  while($row = $result->fetch_array(MYSQLI_ASSOC)){
+
+
+                   echo '<tr>';
+					echo	'<th scope="row">'.$row['unidades'].'</th>';
+					echo	'<td>'.$row['nombre'].'</td>';
+					echo	'<td>'.$row['marca'].'</td>';
+					echo	'<td>'. $row['modelo'].'</td>';
+					echo	'<td>'. $row['precio'].'</td>';
+					echo	'<td>'. $row['unidades'].'</td>';
+					echo	'<td>'.utf8_encode($row['detalles']).'</td>';
+					echo	'<td><img src"'.$row['imagen'].'" </td>';
+				   echo '</tr>';
+
+                  }
+
+                  echo '</tbody> </table>';
+
+                  ?>
+					
+				
+
+
+
+
+		<?php elseif(!empty($tope)) : ?>
 
 			 <script>
                 alert('Ningun producto cumple con la busqueda realizada');
              </script>
+
+      <?php
+
+$result->free();
+$link->close();
+
+      ?>
 
 		<?php endif; ?>
 	</body>
