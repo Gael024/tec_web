@@ -1,54 +1,40 @@
-<?php
-    header("Content-Type: application/json; charset=utf-8"); 
-    $data = array();
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
+	<?php
+	if(isset($_GET['unidades']))
+		$tope = $_GET['unidades'];
 
-	if(isset($_GET['tope']))
-    {
-		$tope = $_GET['tope'];
-    }
-    else
-    {
-        die('Parámetro "tope" no detectado...');
-    }
-
-	if (!empty($tope))
+	if (!empty($id))
 	{
 		/** SE CREA EL OBJETO DE CONEXION */
-		@$link = new mysqli('localhost', 'root', '', 'marketzone');
-        /** NOTA: con @ se suprime el Warning para gestionar el error por medio de código */
+		@$link = new mysqli('localhost', 'root', '', 'marketzone');	
 
 		/** comprobar la conexión */
 		if ($link->connect_errno) 
 		{
 			die('Falló la conexión: '.$link->connect_error.'<br/>');
-			//exit();
+			    /** NOTA: con @ se suprime el Warning para gestionar el error por medio de código */
 		}
 
 		/** Crear una tabla que no devuelve un conjunto de resultados */
-		if ( $result = $link->query("SELECT * FROM productos WHERE unidades <= $tope") ) 
+		if ( $result = $link->query("SELECT * FROM productos WHERE unidades  <= $tope") ) 
 		{
-            /** Se extraen las tuplas obtenidas de la consulta */
-			$row = $result->fetch_all(MYSQLI_ASSOC);
-      
-
-
+			$row = $result->fetch_array(MYSQLI_ASSOC);
 			/** útil para liberar memoria asociada a un resultado con demasiada información */
 			$result->free();
 		}
 
 		$link->close();
-
-        
 	}
 	?>
-
-<head>
+	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>Productos</title>
+		<title>Producto</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	</head>
 	<body>
-		<h3>PRODUCTOS</h3>
+		<h3>PRODUCTO</h3>
 
 		<br/>
 		
@@ -69,7 +55,7 @@
 				</thead>
 				<tbody>
 					<tr>
-						<th scope="row"><?= $row['tope'] ?></th>
+						<th scope="row"><?= $row['unidades'] ?></th>
 						<td><?= $row['nombre'] ?></td>
 						<td><?= $row['marca'] ?></td>
 						<td><?= $row['modelo'] ?></td>
@@ -84,7 +70,7 @@
 		<?php elseif(!empty($id)) : ?>
 
 			 <script>
-                alert('No hay productos que coincidan con la busqueda');
+                alert('Ningun producto cumple con la busqueda realizada');
              </script>
 
 		<?php endif; ?>
