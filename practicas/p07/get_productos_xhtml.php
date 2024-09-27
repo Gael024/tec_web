@@ -18,13 +18,11 @@
 		}
 
 		/** Crear una tabla que no devuelve un conjunto de resultados */
-		 $result = $link->query("SELECT * FROM productos WHERE unidades  <= $tope") 
+		 $result = $link->query("SELECT * FROM productos WHERE unidades  <= $tope"); 
 		
 			//$row = $result->fetch_array(MYSQLI_ASSOC);
 			/** útil para liberar memoria asociada a un resultado con demasiada información */
 			//
-		
-
 		
 	}
 	?>
@@ -68,7 +66,7 @@
 					echo	'<td>'. $row['precio'].'</td>';
 					echo	'<td>'. $row['unidades'].'</td>';
 					echo	'<td>'.utf8_encode($row['detalles']).'</td>';
-					echo	'<td><img src"'.$row['imagen'].'" </td>';
+					echo	'<td><img src="'.$row['imagen'].'" </td>';
 				   echo '</tr>';
 
                   }
