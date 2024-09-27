@@ -36,10 +36,14 @@
 
 		<br/>
 		
-		<?php if( isset($row) ) : ?>
+		<?php //if( isset($row) ) : 
 
-			<table class="table">
-				<thead class="thead-dark">
+        if($result->n_row > 0){
+
+
+            
+			echo '<table class="table">';
+			echo  '<thead class="thead-dark">
 					<tr>
 					<th scope="col">#</th>
 					<th scope="col">Nombre</th>
@@ -51,9 +55,9 @@
 					<th scope="col">Imagen</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody>';
 
-                  <?php
+                  
 
                   while($row = $result->fetch_array(MYSQLI_ASSOC)){
 
@@ -73,19 +77,23 @@
 
                   echo '</tbody> </table>';
 
-                  ?>
-					
-				
+        }
+        else{
+     
+              echo '<p>Ningun producto cumple con la busqueda realizada</p>';
+
+        }
 
 
+         ?>
+								
 
-
-		<?php elseif(!empty($tope)) : ?>
-
+		<?php// elseif(!empty($tope)) : ?>
+<!--
 			 <script>
                 alert('Ningun producto cumple con la busqueda realizada');
              </script>
-
+        -->
       <?php
 
 $result->free();
@@ -93,6 +101,6 @@ $link->close();
 
       ?>
 
-		<?php endif; ?>
+		<?php //endif; ?>
 	</body>
 </html>
