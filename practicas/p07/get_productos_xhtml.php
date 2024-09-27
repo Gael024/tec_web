@@ -2,8 +2,8 @@
 "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
 	<?php
-	if(isset($_GET['unidades']))
-		$tope = $_GET['unidades'];
+	if(isset($_GET['tope']))
+		$tope = $_GET['tope'];
 
 	if (!empty($id))
 	{
