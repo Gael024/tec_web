@@ -46,9 +46,6 @@
 
  /*$row = $result->fetch_all(MYSQLI_ASSOC);*/
 
- 
- /*if ($result = $link->query($query)) {} */
- 
   
         if ($result->num_rows > 0) {
             echo '<table class="table">';
@@ -91,11 +88,7 @@
                 
  $result->free();
  $link->close();
-             /*else {
-                echo 'Error en la consulta: ' . $link->error;
-            }*/
-            // Cerrar la conexión a la base de datos
-            
+                       
 
         ?>
 	</body>
