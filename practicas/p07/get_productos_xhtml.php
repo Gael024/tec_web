@@ -1,106 +1,102 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
 "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
-	<?php
-	if(isset($_GET['tope']))
-		$tope = $_GET['tope'];
+    <?php
 
-	if (!empty($tope))
-	{
-		/** SE CREA EL OBJETO DE CONEXION */
-		@$link = new mysqli('localhost', 'root', '', 'marketzone');	
+     /*header("Content-Type: application/json; charset=utf-8"); 
+      $data = array(); */
 
-		/** comprobar la conexión */
-		if ($link->connect_errno) 
-		{
-			die('Falló la conexión: '.$link->connect_error.'<br/>');
-			    /** NOTA: con @ se suprime el Warning para gestionar el error por medio de código */
-		}
+         if(isset($_GET['tope']))
+         {
+             $tope = $_GET['tope'];
+         }
+         else
+         {
+            die('Parámetro "tope" no detectado...');
+         }
+     
+         if (!empty($tope)) 
 
-		/** Crear una tabla que no devuelve un conjunto de resultados */
-		 $result = $link->query("SELECT * FROM productos WHERE unidades  <= $tope"); 
-		
-			//$row = $result->fetch_array(MYSQLI_ASSOC);
-			/** útil para liberar memoria asociada a un resultado con demasiada información */
-			//
-		
-	}
-	?>
-	<head>
+            /** SE CREA EL OBJETO DE CONEXION */
+            @$link = new mysqli('localhost', 'root', '', 'marketzone');
+             /** NOTA: con @ se suprime el Warning para gestionar el error por medio de código */
+
+           /** comprobar la conexión */
+            if ($link->connect_errno) {
+
+                die('Falló la conexión: ' . $link->connect_error . '<br/>');
+                //exit();
+
+            }
+
+/** Crear una tabla que no devuelve un conjunto de resultados */
+ $result = $link->query("SELECT * FROM productos WHERE unidades <= $tope");
+?>
+ <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>Producto</title>
+		<title>Productos</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	</head>
 	<body>
-		<h3>PRODUCTO</h3>
+		<h3>PRODUCTOS</h3>
 
 		<br/>
-		
-		<?php //if( isset($row) ) : 
 
-        if($result->n_row > 0){
+<?php
+
+ /*$row = $result->fetch_all(MYSQLI_ASSOC);*/
+
+ 
+ /*if ($result = $link->query($query)) {} */
+ 
+  
+        if ($result->num_rows > 0) {
+            echo '<table class="table">';
+            echo '<thead class="thead-dark">
+                  <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Modelo</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Unidades</th>
+                <th scope="col">Detalles</th>
+                <th scope="col">Imagen</th>
+             </tr>
+             </thead>
+             <tbody>';
 
 
-            
-			echo '<table class="table">';
-			echo  '<thead class="thead-dark">
-					<tr>
-					<th scope="col">#</th>
-					<th scope="col">Nombre</th>
-					<th scope="col">Marca</th>
-					<th scope="col">Modelo</th>
-					<th scope="col">Precio</th>
-					<th scope="col">Unidades</th>
-					<th scope="col">Detalles</th>
-					<th scope="col">Imagen</th>
-					</tr>
-				</thead>
-				<tbody>';
+         while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+            echo '<tr>';
+            echo '<th scope="row">'.$row['id'].'</th>';
+            echo '<td>'.$row['nombre'].'</td>';
+            echo '<td>'.$row['marca'].'</td>';
+            echo '<td>'.$row['modelo'].'</td>';
+            echo '<td>'.$row['precio'].'</td>';
+            echo '<td>'.$row['unidades'].'</td>';
+            echo '<td>'.utf8_encode($row['detalles']).'</td>';
+            echo '<td><img src="'.$row['imagen'].'" ></td>';
+            echo '</tr>';
+                    }
 
+      echo '</tbody> </table>';
                   
+    } else {
 
-                  while($row = $result->fetch_array(MYSQLI_ASSOC)){
+    echo '<p>Ningun producto corresponde a la busqueda solicitada</p>';
 
+    }
 
-                   echo '<tr>';
-					echo	'<th scope="row">'.$row['unidades'].'</th>';
-					echo	'<td>'.$row['nombre'].'</td>';
-					echo	'<td>'.$row['marca'].'</td>';
-					echo	'<td>'. $row['modelo'].'</td>';
-					echo	'<td>'. $row['precio'].'</td>';
-					echo	'<td>'. $row['unidades'].'</td>';
-					echo	'<td>'.utf8_encode($row['detalles']).'</td>';
-					echo	'<td><img src="'.$row['imagen'].'" </td>';
-				   echo '</tr>';
+                
+ $result->free();
+ $link->close();
+             /*else {
+                echo 'Error en la consulta: ' . $link->error;
+            }*/
+            // Cerrar la conexión a la base de datos
+            
 
-                  }
-
-                  echo '</tbody> </table>';
-
-        }
-        else{
-     
-              echo '<p>Ningun producto cumple con la busqueda realizada</p>';
-
-        }
-
-
-         ?>
-								
-
-		<?php// elseif(!empty($tope)) : ?>
-<!--
-			 <script>
-                alert('Ningun producto cumple con la busqueda realizada');
-             </script>
-        -->
-      <?php
-
-$result->free();
-$link->close();
-
-      ?>
-
-		<?php //endif; ?>
+        ?>
 	</body>
 </html>
