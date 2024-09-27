@@ -20,7 +20,7 @@
 		/** Crear una tabla que no devuelve un conjunto de resultados */
 		if ( $result = $link->query("SELECT * FROM productos WHERE unidades  <= $tope") ) 
 		{
-			$row = $result->fetch_array(MYSQLI_ASSOC);
+			$row = $result->fetch_all(MYSQLI_ASSOC);
 			/** útil para liberar memoria asociada a un resultado con demasiada información */
 			$result->free();
 		}
