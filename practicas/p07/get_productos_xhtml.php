@@ -5,7 +5,7 @@
 	if(isset($_GET['tope']))
 		$tope = $_GET['tope'];
 
-	if (!empty($id))
+	if (!empty($tope))
 	{
 		/** SE CREA EL OBJETO DE CONEXION */
 		@$link = new mysqli('localhost', 'root', '', 'marketzone');	
