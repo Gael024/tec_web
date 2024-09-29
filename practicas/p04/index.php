@@ -156,9 +156,9 @@
     
     <h2>Ejercicio 6</h2>
     <p> Dar y comprobar el valor boolenano de las variables $a, $b, $c, $d, $e y $f y muestralas usando la función 
-        var_dump(<datos>)</p>
+        var_dump(datos)</p>
     
-        <br>
+      <div>  <br/> </div>
     
        <?php
 
@@ -219,9 +219,9 @@
     <p> Usando la variable predefinida $_SERVER, determina lo siguiente:</p>
 
     <ul>
-   <li>La versión de Apache y PHP<li>
-  <li>El nombre del sistema operativo<li>
-  <li>El idioma del navegador (cliente)<li>
+   <li>La versión de Apache y PHP</li>
+  <li>El nombre del sistema operativo</li>
+  <li>El idioma del navegador (cliente)</li>
   </ul>
 
   <?php
@@ -234,6 +234,11 @@ echo '<b>Idioma del navegador</b>'. $_SERVER['HTTP_ACCEPT_LANGUAGE'];
 
    
   ?>
+
+<p>
+    <a href="https://validator.w3.org/markup/check?uri=referer"><img
+      src="https://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML 1.1" height="31" width="88" /></a>
+  </p>
 
 </body>
 </html>
