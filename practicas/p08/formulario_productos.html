@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+</head>
+<body>
+    <h1>Registro para nuevos productos </h1>
+
+    <form action="http://localhost:80/tec_web/practicas/p08/set_producto_v2.php" method="post">
+
+        <ul> 
+
+       <li>Nombre <input type="text" name="nombre"></li>
+       <br>
+       <li>Marca <input type="text" name="marca"> </li>
+       <br>
+       <li>Modelo <input type="text" name="modelo"> </li>
+       <br>
+       <li>Precio <input type="number" name="precio"> </li>
+       <br>
+       <li>Detalles <input type="text" name="detalles"> </li>
+       <br>
+       <li>Unidades <input type="number" name="unidades"> </li>
+       <br>
+       <li>Imagen <input type="image" name="imagen"> </li>
+
+        </ul>
+
+
+        <input type="submit" value="Agregar registro">
+        <input type="reset" value="Borrar">
+
+    </form>
+    
+</body>
+</html>
