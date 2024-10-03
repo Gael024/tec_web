@@ -24,7 +24,7 @@ $Asignar->bind_param("sss", $nombre, $marca, $modelo);
 $Asignar->execute();
 $Coincidencia = $Asignar->get_result();
 
-if ($Coincidencia == 0){
+if ($Coincidencia->num_rows == 0){
 
     /** Crear una tabla que no devuelve un conjunto de resultados */
 $sql = "INSERT INTO productos VALUES (null, '{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}')";
@@ -51,7 +51,7 @@ else
 
 else {
 
-    echo "Error al validar los datos, el producto que intenta resgistrar ya se encuentra en la base de datos ";
+    echo "<h3>Error al validar los datos, el producto que intenta resgistrar ya se encuentra en la base de datos</h3> ";
 }
 
 
