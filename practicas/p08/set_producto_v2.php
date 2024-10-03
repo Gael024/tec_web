@@ -18,7 +18,7 @@ if ($link->connect_errno)
 }
 
 
-$Validar = "SELECT FROM productos WHERE nombre = ? AND marca = ? AND modelo = ?";
+$Validar = "SELECT * FROM productos WHERE nombre = ? AND marca = ? AND modelo = ?";
 $Asignar = $link->prepare($Validar);
 $Asignar->bind_param("sss", $nombre, $marca, $modelo);
 $Asignar->execute();
