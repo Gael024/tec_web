@@ -5,7 +5,7 @@ $modelo = $_POST['modelo'];
 $precio = $_POST['precio'];
 $detalles = $_POST['detalles'];
 $unidades = $_POST['unidades'];
-$imagen = $_POST¨['imagen'];
+$imagen = $_POST['imagen'];
 
 /** SE CREA EL OBJETO DE CONEXION */
 @$link = new mysqli('localhost', 'root', '', 'marketzone');	
@@ -19,6 +19,7 @@ if ($link->connect_errno)
 
 
 $Validar = "SELECT FROM productos WHERE nombre = ? AND marca = ? AND modelo = ?";
+$Asignar = $link->prepare($Validar);
 $Asignar->bind_param("sss", $nombre, $marca, $modelo);
 $Asignar->execute();
 $Coincidencia = $Asignar->get_result();
@@ -35,9 +36,9 @@ if ( $link->query($sql) )
     echo "<li>Marca: $marca </li>";
     echo "<li>Modelo: $modelo </li>";
     echo "<li>Precio: $precio </li>";
-    echo "<li>Detalles: $Detalles</li>";
-    echo "<li>Numero de unidades: $Unidades</li>";
-    echo "<li>URL de la imagen: $Imagen</li>";
+    echo "<li>Detalles: $detalles</li>";
+    echo "<li>Numero de unidades: $unidades</li>";
+    echo "<li>URL de la imagen: $imagen</li>";
     echo "</ul>";
 }
 else
