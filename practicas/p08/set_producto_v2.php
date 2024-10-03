@@ -17,7 +17,15 @@ if ($link->connect_errno)
     /** NOTA: con @ se suprime el Warning para gestionar el error por medio de código */
 }
 
+if($nombre!=  &&  $marca!=  && $modelo!= ){
 
+
+}
+
+else {
+
+    echo "Los datos ingresados ya han sido registrados ";
+}
 
 
 
