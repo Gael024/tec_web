@@ -6,16 +6,19 @@
      /*header("Content-Type: application/json; charset=utf-8"); 
       $data = array(); */
 
-         if(isset($_GET['eliminado']))
+      /*
+         if(isset($_GET['tope']))
          {
-             $eliminado = $_GET['eliminado'];
+             $tope = $_GET['tope'];
          }
          else
          {
-            die('Parámetro "eliminado" no detectado...');
+            die('Parámetro "tope" no detectado...');
          }
      
-         if (!empty($eliminado)) 
+         if (!empty($tope)) 
+
+         */
 
             /** SE CREA EL OBJETO DE CONEXION */
             @$link = new mysqli('localhost', 'root', '', 'marketzone');
@@ -30,7 +33,7 @@
             }
 
 /** Crear una tabla que no devuelve un conjunto de resultados */
- $result = $link->query("SELECT * FROM productos WHERE eliminado = $eliminado");
+ $result = $link->query("SELECT * FROM productos WHERE eliminado = 0");
 ?>
  <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -59,7 +62,6 @@
                 <th scope="col">Unidades</th>
                 <th scope="col">Detalles</th>
                 <th scope="col">Imagen</th>
-                <th scope="col">Eliminado</th>
              </tr>
              </thead>
              <tbody>';
