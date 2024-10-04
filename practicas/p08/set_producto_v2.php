@@ -26,8 +26,15 @@ $Coincidencia = $Asignar->get_result();
 
 if ($Coincidencia->num_rows == 0){
 
-    /** Crear una tabla que no devuelve un conjunto de resultados */
+    
+    /*
+    
 $sql = "INSERT INTO productos VALUES (null, '{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}',0)";
+    
+    */
+
+$sql = "INSERT INTO productos ( nombre, marca, modelo, precio, detalles, unidades, imagen) VALUES 
+    ('{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}')";
 if ( $link->query($sql) ) 
 {
     echo "<h2>Resumen del producto insertado<h2>";
@@ -53,14 +60,6 @@ else {
 
     echo "<h3>Error al validar los datos, el producto que intenta resgistrar ya se encuentra en la base de datos</h3> ";
 }
-
-
-/*
-$Validar = "SELECT FROM productos WHERE nombre = ? AND marca = ? AND modelo = ?"
-$Asignar2 = $link->prepare($Validar);
-*/
-
-
 
 
 
