@@ -1,4 +1,6 @@
 
+function validar_formulario (){
+
 var nombre = document.getElementById('nom').value;
 var marca = document.getElementById('marca').value;
 var modelo = document.getElementById('modelo').value;
@@ -6,9 +8,6 @@ var precio = document.getElementById('precio').value;
 var detalles = document.getElementById('detalles').value;
 var unidades = document.getElementById('unidades').value;
 var imagen = document.getElementById('imagen').value;
-
-
-function validar_formulario (){
 
 
         if (nombre === "") {
