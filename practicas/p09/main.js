@@ -96,7 +96,7 @@ var imagen = document.getElementById('imagen').value;
         
             if (imagen === "") {
         
-                document.getElementById('imagem').value = "img/predeterminada.jpg";
+                document.getElementById('imagen').value = "img/predeterminada.jpg";
                 alert('No se ha ingresado ninguna imagen, el producto se mostrará con una imagen por defecto');
                 return;
             }
