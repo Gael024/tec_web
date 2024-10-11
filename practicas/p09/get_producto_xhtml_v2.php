@@ -87,7 +87,7 @@
 						<td><?= $value['unidades'] ?></td>
 						<td><?= $value['detalles'] ?></td>
 						<td><img src=<?= $value['imagen'] ?> ></td>
-						<td> <input type = "button" value="Modificar" onclick = "Modificar(event, ' . $row['id'] . ');"></td>
+						<td> <input type = "button" value="Modificar" onclick = "Modificar();"></td>
 					</tr>
 					<?php endforeach; ?>
 				</tbody>

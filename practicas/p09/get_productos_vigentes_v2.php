@@ -81,7 +81,7 @@
             echo '<td>'.$row['unidades'].'</td>';
             echo '<td>'.utf8_encode($row['detalles']).'</td>';
             echo '<td><img src="'.$row['imagen'].'" ></td>';
-            echo '<td> <input type = "button" value="Modificar" onclick = "Modificar(event, ' . $row['id'] . ');"> </td>';
+            echo '<td> <input type = "button" value="Modificar" onclick = "Modificar();"> </td>';
             echo '</tr>';
                     }
 
