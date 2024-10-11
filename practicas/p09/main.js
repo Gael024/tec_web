@@ -11,44 +11,36 @@ var imagen = document.getElementById('imagen').value;
 function validar_formulario (){
 
 
-
-    function nombre (nombre){
-
-        if (nombre == "") {
+        if (nombre === "") {
         
             alert('El nombre del producto es obligatorio, por favor rellenar el campo');
             event.preventDefault();
+            return;
         }
         
         if(nombre.length > 100){
         
         alert('El nombre del producto no puede ser mayor a 100 caracteres');
            event.preventDefault();
+           return;
         
         }
 
-        return;
-            
-        }
         
-        function marca (marca){
-        
-            if(marca== "") {
+            if(marca === "") {
         
                 alert('Por favor seleccione una marca');
                 event.preventDefault();
+                return;
             }
         
-            return;
         
-        }
         
-        function modelo (modelo) {
-        
-            if(modelo == ""){
+            if(modelo === ""){
         
                 alert('El modelo del producto es obligatorio, por favor rellenar el campo');
                 event.preventDefault();
+                return;
         
             }
         
@@ -56,17 +48,16 @@ function validar_formulario (){
         
                 alert('El modelo del producto no puede superar los 25 caracteres');
                 event.preventDefault();
+                return;
             }
 
-            return;
-        }
-        
-        function precio (precio){
+            
         
             if(precio === null) {
         
                 alert('El producto no puede ingresarse sin un precio');
                 event.preventDefault();
+                return;
         
             }
         
@@ -74,52 +65,42 @@ function validar_formulario (){
         
                 alert('El precio minimo de un producto es de $100');
                 event.preventDefault();
+                return;
             }
 
-            return;
-        
-        }
-        
-        function detalles (detalles) {
+            
         
             if(detalles > 250) {
         
                 alert('Los detalles del producto no deben superar los 250 caracteres');
                 event.preventDefault();
+                return;
             }
 
-            return;
-        }
+            
         
-        function unidades (unidades) {
-        
-            if(unidades = null) {
+            if(unidades === null) {
         
                 alert('El campo "unidades" no puede quedar vacio');
                 event.preventDefault();
+                return;
             }
         
             if(unidades < 0){
         
                 alert('El valor minimo del campo "unidades" es 0');
                 event.preventDefault();
+                return;
             }
 
-            return;
-        }
+            
         
-        
-        function imagen (imagen) {
-        
-            if (imagen = "") {
+            if (imagen === "") {
         
                 document.getElementById('imagem').value = "img/predeterminada.jpg";
                 alert('No se ha ingresado ninguna imagen, el producto se mostrará con una imagen por defecto');
+                return;
             }
-
-            return;
-        }
-
 
 
 }
