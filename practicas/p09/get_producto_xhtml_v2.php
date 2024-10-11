@@ -54,7 +54,98 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>Producto</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-		<script src = "./productos.js"></script>
+		<!--<script src = "./productos.js"></script>-->
+		<script>
+
+
+
+function Modificar (event, id) {
+
+// Obtiene el ID de la fila donde está el botón presionado
+var rowId = event.target.closest('tr').id; 
+
+// Se obtienen los datos de la fila en forma de arreglo
+var data = document.getElementById(rowId).querySelectorAll(".row-data");
+
+var nombre = data[0].innerHTML;
+var marca = data[1].innerHTML;
+var modelo = data[2].innerHTML;
+var precio = data[3].innerHTML;
+var unidades = data[4].innerHTML;
+var detalles = data[5].innerHTML;
+var imagen = data[6].querySelector('img').src; 
+
+alert("Nombre: " + nombre + "\nMarca: " + marca+"\nModelo: " + modelo + "\nPrecio: " + precio+"Detalles: " + detalles + "\nUnidades: " + unidades+"\nImagen: " + imagen );
+send2form(id, nombre, marca, modelo, precio, detalles, unidades, imagen); 
+}   
+
+
+function send2form(id, nombre, marca, modelo, precio, detalles, unidades, imagen ) {
+var form = document.createElement("form");
+
+var idIn = document.createElement("input");
+idIn.type = 'hidden';
+idIn.name = 'id';
+idIn.value = id;
+form.appendChild(idIn);
+
+
+var nombreIn = document.createElement("input");
+nombreIn.type = 'text';
+nombreIn.name = 'nombre';
+nombreIn.value = nombre;
+form.appendChild(nombreIn);
+
+var marcaIn = document.createElement("input");
+marcaIn.type = 'text';
+marcaIn.name = 'marca';
+marcaIn.value = marca;
+form.appendChild(marcaIn);
+
+var modeloIn = document.createElement("input");
+modeloIn.type = 'text';
+modeloIn.name = 'modelo';
+modeloIn.value = modelo;
+form.appendChild(modeloIn);
+
+var precioIn = document.createElement("input");
+precioIn.type = 'text';
+precioIn.name = 'precio';
+precioIn.value = precio;
+form.appendChild(precioIn);
+
+
+var detallesIn = document.createElement("textarea");
+detallesIn.name = 'detalles';
+detallesIn.value = detalles; 
+form.appendChild(detallesIn);
+
+
+var unidadesIn = document.createElement("input");
+unidadesIn.type = 'text';
+unidadesIn.name = 'unidades';
+unidadesIn.value = unidades;
+form.appendChild(unidadesIn);
+
+
+var imagenIn = document.createElement("input");
+imagenIn.type = 'text';
+imagenIn.name = 'imagen';
+imagenIn.value = imagen;
+form.appendChild(imagenIn);
+
+
+form.method = 'POST';
+form.action = 'http://localhost:80/tec_web/practicas/p09/formulario_productos_v2.php';
+
+
+document.body.appendChild(form);
+form.submit();
+}
+
+		</script>
+
+
 	</head>
 	<body>
 		<h3>PRODUCTO</h3>
@@ -77,22 +168,24 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php foreach($row as $value) : ?>
-					<tr id="row_' . $row['id'] . '">
-						
-						<th scope="row"><?= $value['id'] ?></th>
-						<td class"row_data"><?= $value['nombre'] ?></td>
-						<td class"row_data"><?= $value['marca'] ?></td>
-						<td class"row_data"><?= $value['modelo'] ?></td>
-						<td class"row_data"><?= $value['precio'] ?></td>
-						<td class"row_data"><?= $value['unidades'] ?></td>
-						<td class"row_data"><?= $value['detalles'] ?></td>
-						<td class"row_data"><img src=<?= $value['imagen'] ?> ></td>
-						<td class"row_data"> <input type = "button" value="Modificar" onclick = "Modificar(event, <?= $value['id'] ?>);"></td>
-					</tr>
-					<?php endforeach; ?>
-				</tbody>
-			</table>
+					<?php
+					 while ($row = $result->fetch_assoc()) {
+                        echo '<tr id="row_' . $row['id'] . '">';
+                        echo '<th scope="row">' . $row['id'] . '</th>';
+                        echo '<td class="row-data">' . $row['nombre'] . '</td>';
+                        echo '<td class="row-data">' . $row['marca'] . '</td>';
+                        echo '<td class="row-data">' . $row['modelo'] . '</td>';
+                        echo '<td class="row-data">' . $row['precio'] . '</td>';
+                        echo '<td class="row-data">' . $row['unidades'] . '</td>';
+                        echo '<td class="row-data">' . utf8_encode($row['detalles']) . '</td>';
+                        echo '<td class="row-data"><img src="' . $row['imagen'] . '" width="100" height="auto" alt="Imagen del producto"></td>';
+                        echo '<td><input type="button" value="Modificar" onclick="cambiar(event, ' . $row['id'] . ');" /></td>';
+                        echo '</tr>';
+                    }
+
+                    echo '</tbody>';
+                    echo '</table>';
+					?>
 		<?php elseif(!empty($id)) : ?>
 
 			 <script>
@@ -100,5 +193,7 @@
              </script>
 
 		<?php endif; ?>
+
+
 	</body>
 </html>
