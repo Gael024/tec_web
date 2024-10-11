@@ -57,119 +57,32 @@
 		<!--<script src = "./productos.js"></script>-->
 		<script>
 
-
-
-function Modificar (event, id) {
-
-// Obtiene el ID de la fila donde está el botón presionado
-var rowId = event.target.closest('tr').id; 
-
-// Se obtienen los datos de la fila en forma de arreglo
-var data = document.getElementById(rowId).querySelectorAll(".row-data");
-
-var nombre = data[0].innerHTML;
-var marca = data[1].innerHTML;
-var modelo = data[2].innerHTML;
-var precio = data[3].innerHTML;
-var unidades = data[4].innerHTML;
-var detalles = data[5].innerHTML;
-var imagen = data[6].querySelector('img').src; 
-
-alert("Nombre: " + nombre + "\nMarca: " + marca+"\nModelo: " + modelo + "\nPrecio: " + precio+"Detalles: " + detalles + "\nUnidades: " + unidades+"\nImagen: " + imagen );
-send2form(id, nombre, marca, modelo, precio, detalles, unidades, imagen); 
-}   
-
-
-function send2form(id, nombre, marca, modelo, precio, detalles, unidades, imagen ) {
-var form = document.createElement("form");
-
-var idIn = document.createElement("input");
-idIn.type = 'hidden';
-idIn.name = 'id';
-idIn.value = id;
-form.appendChild(idIn);
-
-
-var nombreIn = document.createElement("input");
-nombreIn.type = 'text';
-nombreIn.name = 'nombre';
-nombreIn.value = nombre;
-form.appendChild(nombreIn);
-
-var marcaIn = document.createElement("input");
-marcaIn.type = 'text';
-marcaIn.name = 'marca';
-marcaIn.value = marca;
-form.appendChild(marcaIn);
-
-var modeloIn = document.createElement("input");
-modeloIn.type = 'text';
-modeloIn.name = 'modelo';
-modeloIn.value = modelo;
-form.appendChild(modeloIn);
-
-var precioIn = document.createElement("input");
-precioIn.type = 'text';
-precioIn.name = 'precio';
-precioIn.value = precio;
-form.appendChild(precioIn);
-
-
-var detallesIn = document.createElement("textarea");
-detallesIn.name = 'detalles';
-detallesIn.value = detalles; 
-form.appendChild(detallesIn);
-
-
-var unidadesIn = document.createElement("input");
-unidadesIn.type = 'text';
-unidadesIn.name = 'unidades';
-unidadesIn.value = unidades;
-form.appendChild(unidadesIn);
-
-
-var imagenIn = document.createElement("input");
-imagenIn.type = 'text';
-imagenIn.name = 'imagen';
-imagenIn.value = imagen;
-form.appendChild(imagenIn);
-
-
-form.method = 'POST';
-form.action = 'http://localhost:80/tec_web/practicas/p09/formulario_productos_v2.php';
-
-
-document.body.appendChild(form);
-form.submit();
-}
-
-		</script>
-
-
 	</head>
 	<body>
 		<h3>PRODUCTO</h3>
 
 		<br/>
 		
-		<?php if( isset($row) ) : ?>
-			<table class="table">
-				<thead class="thead-dark">
-					<tr>
-					<th scope="col">#</th>
-					<th scope="col">Nombre</th>
-					<th scope="col">Marca</th>
-					<th scope="col">Modelo</th>
-					<th scope="col">Precio</th>
-					<th scope="col">Unidades</th>
-					<th scope="col">Detalles</th>
-					<th scope="col">Imagen</th>
-					<th scope="col">Modificar</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php
-					 while ($row = $result->fetch_assoc()) {
+		if ($result = $link->query($query)) {
+                if ($result->num_rows > 0) {
+                    echo '<table class="table">';
+                    echo '<thead class="thead-dark">';
+                    echo '<tr>';
+                    echo '<th scope="col">#</th>';
+                    echo '<th scope="col">Nombre</th>';
+                    echo '<th scope="col">Marca</th>';
+                    echo '<th scope="col">Modelo</th>';
+                    echo '<th scope="col">Precio</th>';
+                    echo '<th scope="col">Unidades</th>';
+                    echo '<th scope="col">Detalles</th>';
+                    echo '<th scope="col">Imagen</th>';
+                    echo '<th scope="col">Modificar</th>';
+                    echo '</tr>';
+                    echo '</thead>';
+                    echo '<tbody>';
+
+                    // Mostrar cada producto
+                    while ($row = $result->fetch_assoc()) {
                         echo '<tr id="row_' . $row['id'] . '">';
                         echo '<th scope="row">' . $row['id'] . '</th>';
                         echo '<td class="row-data">' . $row['nombre'] . '</td>';
@@ -178,22 +91,114 @@ form.submit();
                         echo '<td class="row-data">' . $row['precio'] . '</td>';
                         echo '<td class="row-data">' . $row['unidades'] . '</td>';
                         echo '<td class="row-data">' . utf8_encode($row['detalles']) . '</td>';
-                        echo '<td class="row-data"><img src="' . $row['imagen'] . '" width="100" height="auto" alt="Imagen del producto"></td>';
-                        echo '<td><input type="button" value="Modificar" onclick="cambiar(event, ' . $row['id'] . ');" /></td>';
+                        echo '<td class="row-data"><img src="' . $row['imagen'] . '" ></td>';
+                        echo '<td><input type="button" value="Modificar" onclick="Modificarr(event, ' . $row['id'] . ');" /></td>';
                         echo '</tr>';
                     }
 
                     echo '</tbody>';
                     echo '</table>';
-					?>
-		<?php elseif(!empty($id)) : ?>
+                } else {
+                    echo '<p>No hay productos que coincidan con la busqueda.</p>';
+                }
 
-			 <script>
-                alert('El ID del producto no existe');
-             </script>
+                // Liberar el resultado
+                $result->free();
+            } else {
+                echo 'Error en la consulta: ' . $link->error;
+            }
+            // Cerrar la conexión a la base de datos
+            $link->close();
+        }
+        ?>
+        <script>
+        function Modificar (event, id) {
+           
 
-		<?php endif; ?>
+            // Obtiene el ID de la fila donde está el botón presionado
+            var rowId = event.target.closest('tr').id; 
 
+            // Se obtienen los datos de la fila en forma de arreglo
+            var data = document.getElementById(rowId).querySelectorAll(".row-data");
+            
+         
+            var nombre = data[0].innerHTML;
+            var marca = data[1].innerHTML;
+            var modelo = data[2].innerHTML;
+            var precio = data[3].innerHTML;
+            var unidades = data[4].innerHTML;
+            var detalles = data[5].innerHTML;
+            var imagen = data[6].querySelector('img').src; 
 
+            alert("Nombre: " + nombre + "\nMarca: " + marca+"\nModelo: " + modelo + "\nPrecio: " + precio+"Detalles: " + detalles + "\nUnidades: " + unidades+"\nImagen: " + imagen );
+            send2form(id, nombre, marca, modelo, precio, detalles, unidades, imagen);
+
+        }
+
+        function send2form(id, nombre, marca, modelo, precio, detalles, unidades, imagen ) {
+            var form = document.createElement("form");
+
+            var idIn = document.createElement("input");
+            idIn.type = 'hidden';
+            idIn.name = 'id';
+            idIn.value = id;
+            form.appendChild(idIn);
+
+            
+            var nombreIn = document.createElement("input");
+            nombreIn.type = 'text';
+            nombreIn.name = 'nombre';
+            nombreIn.value = nombre;
+            form.appendChild(nombreIn);
+
+            
+            var marcaIn = document.createElement("input");
+            marcaIn.type = 'text';
+            marcaIn.name = 'marca';
+            marcaIn.value = marca;
+            form.appendChild(marcaIn);
+
+            
+            var modeloIn = document.createElement("input");
+            modeloIn.type = 'text';
+            modeloIn.name = 'modelo';
+            modeloIn.value = modelo;
+            form.appendChild(modeloIn);
+
+            
+            var precioIn = document.createElement("input");
+            precioIn.type = 'text';
+            precioIn.name = 'precio';
+            precioIn.value = precio;
+            form.appendChild(precioIn);
+
+            
+            var detallesIn = document.createElement("textarea");
+            detallesIn.name = 'detalles';
+            detallesIn.value = detalles; 
+            form.appendChild(detallesIn);
+
+           
+            var unidadesIn = document.createElement("input");
+            unidadesIn.type = 'text';
+            unidadesIn.name = 'unidades';
+            unidadesIn.value = unidades;
+            form.appendChild(unidadesIn);
+
+            
+            var imagenIn = document.createElement("input");
+            imagenIn.type = 'text';
+            imagenIn.name = 'imagen';
+            imagenIn.value = imagen;
+            form.appendChild(imagenIn);
+
+            
+            form.method = 'POST';
+            form.action = 'http://localhost:80/tec_web/practicas/p09/formulario_productos_v2.php';
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
 	</body>
 </html>
