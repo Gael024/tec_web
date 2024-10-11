@@ -41,7 +41,7 @@
             }
 
 			/** útil para liberar memoria asociada a un resultado con demasiada información */
-			$result->free();
+			//$result->free();
 		}
 
 		$link->close();
