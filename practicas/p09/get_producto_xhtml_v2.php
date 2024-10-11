@@ -78,16 +78,17 @@
 				</thead>
 				<tbody>
 					<?php foreach($row as $value) : ?>
-					<tr>
+					<tr id="row_' . $row['id'] . '">
+						
 						<th scope="row"><?= $value['id'] ?></th>
-						<td><?= $value['nombre'] ?></td>
-						<td><?= $value['marca'] ?></td>
-						<td><?= $value['modelo'] ?></td>
-						<td><?= $value['precio'] ?></td>
-						<td><?= $value['unidades'] ?></td>
-						<td><?= $value['detalles'] ?></td>
-						<td><img src=<?= $value['imagen'] ?> ></td>
-						<td> <input type = "button" value="Modificar" onclick = "Modificar();"></td>
+						<td class"row_data"><?= $value['nombre'] ?></td>
+						<td class"row_data"><?= $value['marca'] ?></td>
+						<td class"row_data"><?= $value['modelo'] ?></td>
+						<td class"row_data"><?= $value['precio'] ?></td>
+						<td class"row_data"><?= $value['unidades'] ?></td>
+						<td class"row_data"><?= $value['detalles'] ?></td>
+						<td class"row_data"><img src=<?= $value['imagen'] ?> ></td>
+						<td class"row_data"> <input type = "button" value="Modificar" onclick = "Modificar(event, ' . $row['id'] . ');"></td>
 					</tr>
 					<?php endforeach; ?>
 				</tbody>
