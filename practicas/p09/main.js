@@ -27,7 +27,7 @@ function validar_formulario (){
         
         }
 
-        
+        return;
             
         }
         
@@ -39,6 +39,7 @@ function validar_formulario (){
                 event.preventDefault();
             }
         
+            return;
         
         }
         
@@ -56,6 +57,8 @@ function validar_formulario (){
                 alert('El modelo del producto no puede superar los 25 caracteres');
                 event.preventDefault();
             }
+
+            return;
         }
         
         function precio (precio){
@@ -72,6 +75,8 @@ function validar_formulario (){
                 alert('El precio minimo de un producto es de $100');
                 event.preventDefault();
             }
+
+            return;
         
         }
         
@@ -82,6 +87,8 @@ function validar_formulario (){
                 alert('Los detalles del producto no deben superar los 250 caracteres');
                 event.preventDefault();
             }
+
+            return;
         }
         
         function unidades (unidades) {
@@ -97,6 +104,8 @@ function validar_formulario (){
                 alert('El valor minimo del campo "unidades" es 0');
                 event.preventDefault();
             }
+
+            return;
         }
         
         
@@ -107,6 +116,8 @@ function validar_formulario (){
                 document.getElementById('imagem').value = "img/predeterminada.jpg";
                 alert('No se ha ingresado ninguna imagen, el producto se mostrará con una imagen por defecto');
             }
+
+            return;
         }
 
 
