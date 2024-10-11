@@ -52,7 +52,7 @@ var imagen = document.getElementById('imagen').value;
 
             
         
-            if(precio === null) {
+            if(precio === "") {
         
                 alert('El producto no puede ingresarse sin un precio');
                 event.preventDefault();
@@ -78,7 +78,7 @@ var imagen = document.getElementById('imagen').value;
 
             
         
-            if(unidades === null) {
+            if(unidades === "") {
         
                 alert('El campo "unidades" no puede quedar vacio');
                 event.preventDefault();
