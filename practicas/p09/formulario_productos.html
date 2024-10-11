@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <script src="./main.js"></script>
+</head>
+<body>
+    <h1>Registro para nuevos productos </h1>
+
+    <form action="http://localhost:80/tec_web/practicas/p09/set_producto_v2.php" method="post">
+
+        <ul> 
+
+       <li>Nombre <input type="text" name="nombre" id="nom"></li>
+       <br>
+       <li>Marca <select name="marca" size="1" id="marca"> 
+        
+        <option value="marca1">nombre1</option>
+        <option value="marca2">nombre2</option>
+        <option value="marca3">nombre3</option>
+        <option value="marca4">nombre4</option>
+        <option value="marca5">nombre5</option>
+        <option value="marca6">nombre6</option>
+        <option value="marca7">nombre7</option>
+        <option value="marca8">nombre8</option>
+
+
+
+        </select> </li>
+       <br>
+       <li>Modelo <input type="text" name="modelo" id="modelo"> </li>
+       <br>
+       <li>Precio <input type="number" name="precio" step="0.01" min="0" id="precio"> </li>
+       <br>
+       <li>Detalles <br> <textarea name="detalles" rows="4" cols="60" maxlength="..." id="detalles"></textarea> </li>
+       <br>
+       <li>Unidades <input type="number" name="unidades" id="unidades"> </li>
+       <br>
+       <li>Imagen <input type="text" name="imagen" placeholder="Pegue la url de su imagen" id="imagen"> </li>
+
+        </ul>
+
+
+        <input type="submit" value="Agregar registro" onclick="validar_formulario();">
+        <input type="reset" value="Borrar">
+
+    </form>
+    
+</body>
+</html>
