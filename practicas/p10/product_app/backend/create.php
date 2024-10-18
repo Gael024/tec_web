@@ -55,12 +55,12 @@ $sql = "INSERT INTO productos ( nombre, marca, modelo, precio, detalles, unidade
 
 if ($insertar->execute()) {
 
-    echo json_encode(['status' => 'success', 'message' => 'Producto insertado correctamente.']);
+    echo json_encode(['status' => 'success', 'message' => 'El producto se ha guardado correctamente.']);
 
 } 
 
 else {
-    echo json_encode(['status' => 'error', 'message' => 'Error al insertar el producto: ' . $insertar->error]);
+    echo json_encode(['status' => 'error', 'message' => 'Ha ocurrido un error, el producto no ha podido guardarse ' . $insertar->error]);
 }
 
 
@@ -69,7 +69,7 @@ $insertar->close();
 
 else {
     
-echo json_encode(['status' => 'error', 'message' => 'El producto ya existe.']);
+echo json_encode(['status' => 'error', 'message' => 'Error, el producto que se intenta insertar ya existe en la DB.']);
 }
 }
 ?>
