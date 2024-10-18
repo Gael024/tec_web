@@ -144,6 +144,7 @@ function buscarProducto (e){
 
 
 
+
 // FUNCIÓN CALLBACK DE BOTÓN "Agregar Producto"
 function agregarProducto(e) {
     e.preventDefault();
@@ -155,7 +156,7 @@ function agregarProducto(e) {
     // SE AGREGA AL JSON EL NOMBRE DEL PRODUCTO
     finalJSON['nombre'] = document.getElementById('name').value;
     // SE OBTIENE EL STRING DEL JSON FINAL
-    productoJsonString = JSON.stringify(finalJSON);
+    productoJsonString = JSON.stringify(finalJSON,null,2);
 
     // SE CREA EL OBJETO DE CONEXIÓN ASÍNCRONA AL SERVIDOR
     var client = getXMLHttpRequest();
@@ -164,8 +165,7 @@ function agregarProducto(e) {
     client.onreadystatechange = function () {
         // SE VERIFICA SI LA RESPUESTA ESTÁ LISTA Y FUE SATISFACTORIA
         if (client.readyState == 4 && client.status == 200) {
-            var response = JSON.parse(client.responseText);
-            window.alert(response.message);
+            console.log(client.responseText);
         }
     };
     client.send(productoJsonString);
