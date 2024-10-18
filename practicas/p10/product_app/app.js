@@ -82,17 +82,21 @@ function buscarProducto (e){
             let productos = JSON.parse(client.responseText);    // similar a eval('('+client.responseText+')');
             
             // SE VERIFICA SI EL OBJETO JSON TIENE DATOS
-            if(Object.keys(productos).length > 0) {
+            if(productos.length > 0) {
+
+                let template = '';
                 // SE CREA UNA LISTA HTML CON LA DESCRIPCIÓN DEL PRODUCTO
-                let descripcion = '';
+
+                productos.foreach(function(Producto) {
+
+                    let descripcion = '';
                     descripcion += '<li>precio: '+productos.precio+'</li>';
                     descripcion += '<li>unidades: '+productos.unidades+'</li>';
                     descripcion += '<li>modelo: '+productos.modelo+'</li>';
                     descripcion += '<li>marca: '+productos.marca+'</li>';
                     descripcion += '<li>detalles: '+productos.detalles+'</li>';
-                
-                // SE CREA UNA PLANTILLA PARA CREAR LA(S) FILA(S) A INSERTAR EN EL DOCUMENTO HTML
-                let template = '';
+
+
                     template += `
                         <tr>
                             <td>${productos.id}</td>
@@ -100,6 +104,9 @@ function buscarProducto (e){
                             <td><ul>${descripcion}</ul></td>
                         </tr>
                     `;
+
+                } );
+   
 
                 // SE INSERTA LA PLANTILLA EN EL ELEMENTO CON ID "productos"
                 document.getElementById("productos").innerHTML = template;
