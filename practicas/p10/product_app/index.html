@@ -25,7 +25,7 @@
     <div>
       <div>
         <!-- FORMULARIO PARA AGREGAR PRODUCTO -->
-        <form id="task-form">
+        <form id="task-form" action="http://localhost:80/tec_web/practicas/p10/product_app/backend/create.php" method="post">
           <br>
           <div>
             <input type="text" id="name" placeholder="Nombre de producto">
@@ -34,7 +34,7 @@
             <textarea id="description" cols="30" rows="10" placeholder="JSON de producto"></textarea>
           </div>
           <input type="hidden" id="taskId">
-          <button type="submit" onclick="validar_formulario(); agregarProducto(event)" >
+          <button type="submit" onclick="validar_formulario(); agregarProducto(event);" >
             Agregar Producto
           </button>
         </form>
