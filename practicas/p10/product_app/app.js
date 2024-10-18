@@ -235,7 +235,7 @@ function validar_JSON (event){
     
                 
             
-                if(F_producto.precio === "") {
+                if(isNaN(F_producto.precio)) {
             
                     alert('El producto no puede ingresarse sin un precio');
                     event.preventDefault();
@@ -252,7 +252,7 @@ function validar_JSON (event){
     
                 
             
-                if(F_producto.detalles > 250) {
+                if(F_producto.detalles.length > 250) {
             
                     alert('Los detalles del producto no deben superar los 250 caracteres');
                     event.preventDefault();
@@ -261,14 +261,14 @@ function validar_JSON (event){
     
                 
             
-                if(F_producto.unidades === "") {
+                if(isNaN(F_producto.unidades)) {
             
                     alert('El campo "unidades" no puede quedar vacio');
                     event.preventDefault();
                     return;
                 }
             
-                if(isNaN(F_producto.unidades) < 0){
+                if(F_producto.unidades < 0){
             
                     alert('El valor minimo del campo "unidades" es 0');
                     event.preventDefault();
