@@ -42,7 +42,7 @@ if ($Coincidencia->num_rows == 0){
       
 $sql = "INSERT INTO productos VALUES (null, '{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}',0)";
 $insertar = $link->prepare($sql);
-$insertar = bind_param ("sssdsisi")
+$insertar = bind_param ("sssdsisi");
         
 /*
 $sql = "INSERT INTO productos ( nombre, marca, modelo, precio, detalles, unidades, imagen) VALUES 
@@ -50,7 +50,7 @@ $sql = "INSERT INTO productos ( nombre, marca, modelo, precio, detalles, unidade
 */
 
 
-if ( $link->query($sql) ) 
+if ( $insertar->execute() ) 
 {
    echo 'Producto insertado correctamente';
 }
@@ -59,9 +59,7 @@ else
 	echo 'El Producto no pudo ser insertado =(';
 }
 
-
 }
-
 
 else {
 
