@@ -7,11 +7,7 @@
         // SE TRANSFORMA EL STRING DEL JASON A OBJETO
         $jsonOBJ = json_decode($producto);
 
-
-
-
-
-
+        /*
         $nombre = $_POST['nombre'];
         $marca  = $_POST['marca'];
         $modelo = $_POST['modelo'];
@@ -20,6 +16,7 @@
         $unidades = $_POST['unidades'];
         $imagen = $_POST['imagen'];
         $eliminado = $_POST['eliminado'];
+*/
 
         @$link = new mysqli('localhost', 'root', '', 'marketzone');	
 

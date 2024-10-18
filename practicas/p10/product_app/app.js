@@ -186,15 +186,11 @@ function init() {
 /*Validar Datos */
 
 
-function validar_formulario (){
+function validar_JSON (event){
 
-    var nombre = document.getElementById('nom').value;
-    var marca = document.getElementById('marca').value;
-    var modelo = document.getElementById('modelo').value;
-    var precio = document.getElementById('precio').value;
-    var detalles = document.getElementById('detalles').value;
-    var unidades = document.getElementById('unidades').value;
-    var imagen = document.getElementById('imagen').value;
+    var I_producto = document.getElementById('description').value;
+    var F_producto = JSON.parse(I_producto);
+    F_producto['nombre'] = document.getElementById('name').value;
     
     
             if (nombre === "") {
