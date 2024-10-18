@@ -40,13 +40,16 @@ $Coincidencia = $Asignar->get_result();
 
 if ($Coincidencia->num_rows == 0){
       
-$sql = "INSERT INTO productos VALUES (null, '{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}',0)";
+//$sql = "INSERT INTO productos VALUES (null, '{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}',0)";
+
+$sql = "INSERT INTO productos ( nombre, marca, modelo, precio, detalles, unidades, imagen, eliminado) VALUES (?,?,?,?,?,?,?,?)";
+   
 $insertar = $link->prepare($sql);
-$insertar = bind_param ("sssdsisi", $nombre, $marca, $modelo, $precio, $detalles, $unidades, $imagen, $eliminado);
+$insertar =bind_param("sssdsisi", $nombre, $marca, $modelo, $precio, $detalles, $unidades, $imagen, $eliminado);
         
 /*
-$sql = "INSERT INTO productos ( nombre, marca, modelo, precio, detalles, unidades, imagen) VALUES 
-    ('{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}')";
+$sql = "INSERT INTO productos ( nombre, marca, modelo, precio, detalles, unidades, imagen, eliminado) VALUES 
+    (?,?,?,?,?,?,?,?)";
 */
 
 
@@ -58,7 +61,7 @@ else
 {
 	echo 'El Producto no pudo ser insertado =(';
 }
-
+$insertar->close();
 }
 
 else {
