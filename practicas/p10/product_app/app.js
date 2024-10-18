@@ -243,7 +243,7 @@ function validar_JSON (event){
             
                 }
             
-                if(isNaN(F_producto.precio) <100){
+                if(F_producto.precio <100){
             
                     alert('El precio minimo de un producto es de $100');
                     event.preventDefault();
