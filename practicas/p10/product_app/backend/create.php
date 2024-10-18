@@ -55,18 +55,18 @@ $sql = "INSERT INTO productos ( nombre, marca, modelo, precio, detalles, unidade
 
 if ( $insertar->execute() ) 
 {
-    echo 'Producto insertado correctamente';
+   echo 'Producto insertado correctamente';
 }
 else
 {
-    echo 'El producto no pudo ser insertado';
+	echo 'El Producto no pudo ser insertado =(';
 }
 $insertar->close();
 }
 
 else {
 
-    echo "<h3>Error al validar los datos, el producto que intenta resgistrar ya se encuentra en la base de datos</h3>";
+    echo "<h3>Error al validar los datos, el producto que intenta resgistrar ya se encuentra en la base de datos</h3> ";
 }
 
 
