@@ -8,6 +8,10 @@ var baseJSON = {
     "imagen": "img/default.png"
   };
 
+
+
+
+
   /* --------*/
 /*
   fetch('./backend/create.php', { method: 'POST', headers: {
@@ -314,3 +318,31 @@ function validar_JSON (event){
     }
     
 
+const producto = {
+        nombre: "Producto Ejemplo",
+        marca: "Marca Ejemplo",
+        modelo: "Modelo Ejemplo",
+        precio: 100.00,
+        detalles: "Detalles del producto",
+        unidades: 10,
+        imagen: "imagen.jpg"
+    };
+
+    fetch('./backend/create.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(producto)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            window.alert(data.message);  
+        } else {
+            window.alert(data.message);  
+        }
+    })
+    .catch(error => {
+        window.alert('Hubo un problema con la inserción: ' + error.message);
+    });

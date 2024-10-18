@@ -55,18 +55,19 @@ $sql = "INSERT INTO productos ( nombre, marca, modelo, precio, detalles, unidade
 
 if ( $insertar->execute() ) 
 {
-   echo 'Producto insertado correctamente';
+    echo json_encode(['status' => 'success', 'message' => 'El producto se ha insertado correctamente']);
 }
 else
 {
-	echo 'El Producto no pudo ser insertado =(';
+	echo json_encode(['status' => 'error', 'message' => 'Ha ocurrido un error, el producto no ha podido insertarse']);
 }
 $insertar->close();
 }
 
 else {
 
-    echo "<h3>Error al validar los datos, el producto que intenta resgistrar ya se encuentra en la base de datos</h3> ";
+    echo json_encode(['status' => 'error', 'message' => 'El producto ingresado no ha podido insertarse, ya existeb en la DB']);
+}
 }
 
 
