@@ -9,7 +9,7 @@ var baseJSON = {
   };
 
   /* --------*/
-
+/*
   fetch('./backend/create.php', { method: 'POST', headers: {
         'Content-Type': 'application/json'
     },
@@ -24,7 +24,7 @@ var baseJSON = {
     }
 })
 
-/*
+
 .catch(error => {
     window.alert('Hubo un problema con la inserción: ' + error.message);
 });
