@@ -169,7 +169,18 @@ function agregarProducto(e) {
     client.onreadystatechange = function () {
         // SE VERIFICA SI LA RESPUESTA ESTÁ LISTA Y FUE SATISFACTORIA
         if (client.readyState == 4 && client.status == 200) {
+            try {
+                var response = JSON.parse(client.responseText);
+                if (response.status === 'success') {
+                    alert(response.message);
+                } else {
+                    alert(response.message)
+                }
+            } catch (e) {
+                console.error('Error al procesar la respuesta:', e);
+            }
             console.log(client.responseText);
+
         }
     };
     client.send(productoJsonString);

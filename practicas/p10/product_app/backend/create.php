@@ -4,7 +4,7 @@
     @$link = new mysqli('localhost', 'root', '', 'marketzone');	
 
     /** comprobar la conexión */
-if ($link->connect_errno) 
+    if ($link->connect_errno) 
 {
 die('Falló la conexión: '.$link->connect_error.'<br/>');
 /** NOTA: con @ se suprime el Warning para gestionar el error por medio de código */
@@ -53,37 +53,23 @@ $sql = "INSERT INTO productos ( nombre, marca, modelo, precio, detalles, unidade
 */
 
 
-if ( $insertar->execute() ) 
-{
-    echo 'Producto insertado correctamente';
-}
-else
-{
-	echo 'El Producto no pudo ser insertado =(';
-}
-$insertar->close();
-}
+if ($insertar->execute()) {
+
+    echo json_encode(['status' => 'success', 'message' => 'Producto insertado correctamente.']);
+
+} 
 
 else {
-
-    echo "<h3>Error al validar los datos, el producto que intenta resgistrar ya se encuentra en la base de datos</h3> ";
-}
+    echo json_encode(['status' => 'error', 'message' => 'Error al insertar el producto: ' . $insertar->error]);
 }
 
 
+$insertar->close();
+} 
 
-        /**
-         * SUSTITUYE LA SIGUIENTE LÍNEA POR EL CÓDIGO QUE REALICE
-         * LA INSERCIÓN A LA BASE DE DATOS. COMO RESPUESTA REGRESA
-         * UN MENSAJE DE ÉXITO O DE ERROR, SEGÚN SEA EL CASO.
-         */
-
-
-
-
-
-        echo '[SERVIDOR] Nombre: '.$jsonOBJ->nombre;
+else {
     
-
-   $link->close();
+echo json_encode(['status' => 'error', 'message' => 'El producto ya existe.']);
+}
+}
 ?>
