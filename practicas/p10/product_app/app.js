@@ -309,6 +309,7 @@ function validar_JSON (event){
                 }
     
     
+                agregarProducto(event);
     }
     
 
