@@ -90,5 +90,5 @@ else {
         echo '[SERVIDOR] Nombre: '.$jsonOBJ->nombre;
     }
 
-  /* */  $link->close();
+  //  $link->close();
 ?>
