@@ -193,14 +193,14 @@ function validar_JSON (event){
     F_producto['nombre'] = document.getElementById('name').value;
     
     
-            if (nombre === "") {
+            if (F_producto.nombre === "") {
             
                 alert('El nombre del producto es obligatorio, por favor rellenar el campo');
                 event.preventDefault();
                 return;
             }
             
-            if(nombre.length > 100){
+            if(F_producto.nombre.length > 100){
             
             alert('El nombre del producto no puede ser mayor a 100 caracteres');
                event.preventDefault();
@@ -209,7 +209,7 @@ function validar_JSON (event){
             }
     
             
-                if(marca === "") {
+                if(F_producto.marca === "") {
             
                     alert('Por favor seleccione una marca');
                     event.preventDefault();
@@ -218,7 +218,7 @@ function validar_JSON (event){
             
             
             
-                if(modelo === ""){
+                if(F_producto.modelo === ""){
             
                     alert('El modelo del producto es obligatorio, por favor rellenar el campo');
                     event.preventDefault();
@@ -226,7 +226,7 @@ function validar_JSON (event){
             
                 }
             
-                if(modelo.length > 25) {
+                if(F_producto.modelo.length > 25) {
             
                     alert('El modelo del producto no puede superar los 25 caracteres');
                     event.preventDefault();
@@ -235,7 +235,7 @@ function validar_JSON (event){
     
                 
             
-                if(precio === "") {
+                if(F_producto.precio === "") {
             
                     alert('El producto no puede ingresarse sin un precio');
                     event.preventDefault();
@@ -243,7 +243,7 @@ function validar_JSON (event){
             
                 }
             
-                if(precio <100){
+                if(isNaN(F_producto.precio) <100){
             
                     alert('El precio minimo de un producto es de $100');
                     event.preventDefault();
@@ -252,7 +252,7 @@ function validar_JSON (event){
     
                 
             
-                if(detalles > 250) {
+                if(F_producto.detalles > 250) {
             
                     alert('Los detalles del producto no deben superar los 250 caracteres');
                     event.preventDefault();
@@ -261,14 +261,14 @@ function validar_JSON (event){
     
                 
             
-                if(unidades === "") {
+                if(F_producto.unidades === "") {
             
                     alert('El campo "unidades" no puede quedar vacio');
                     event.preventDefault();
                     return;
                 }
             
-                if(unidades < 0){
+                if(isNaN(F_producto.unidades) < 0){
             
                     alert('El valor minimo del campo "unidades" es 0');
                     event.preventDefault();
@@ -277,7 +277,7 @@ function validar_JSON (event){
     
                 
             
-                if (imagen === "") {
+                if (F_producto.imagen === "") {
             
                     document.getElementById('imagen').value = "img/predeterminada.jpg";
                     alert('No se ha ingresado ninguna imagen, el producto se mostrará con una imagen por defecto');
