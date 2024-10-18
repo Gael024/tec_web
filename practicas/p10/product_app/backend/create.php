@@ -17,21 +17,21 @@ die('Falló la conexión: '.$link->connect_error.'<br/>');
         // SE TRANSFORMA EL STRING DEL JASON A OBJETO
         $jsonOBJ = json_decode($producto);
 
-        /*
-        $nombre = $_POST['nombre'];
-        $marca  = $_POST['marca'];
-        $modelo = $_POST['modelo'];
-        $precio = $_POST['precio'];
-        $detalles = $_POST['detalles'];
-        $unidades = $_POST['unidades'];
-        $imagen = $_POST['imagen'];
-        $eliminado = $_POST['eliminado'];
-*/
+        
+        $nombre = $jsonOBJ->nombre;
+        $marca  = $jsonOBJ->marca;
+        $modelo = $jsonOBJ->modelo;
+        $precio = $jsonOBJ->precio;
+        $detalles = $jsonOBJ->detalles;
+        $unidades = $jsonOBJ->unidades;
+        $imagen = $jsonOBJ->imagen;
+        $eliminado = 0;
+
 
        
 
 
-$Validar = "SELECT * FROM productos WHERE nombre = ? AND eliminado = 0 ";
+$Validar = "SELECT * FROM productos WHERE nombre = ? AND eliminado = ? ";
 $Asignar = $link->prepare($Validar);
 $Asignar->bind_param("si", $nombre, $eliminado);
 $Asignar->execute();
@@ -50,16 +50,7 @@ $sql = "INSERT INTO productos ( nombre, marca, modelo, precio, detalles, unidade
 
 if ( $link->query($sql) ) 
 {
-    echo "<h2>Resumen del producto insertado<h2>";
-    echo "<ul>";
-    echo "<li>Nombre: $nombre </li>";
-    echo "<li>Marca: $marca </li>";
-    echo "<li>Modelo: $modelo </li>";
-    echo "<li>Precio: $precio </li>";
-    echo "<li>Detalles: $detalles</li>";
-    echo "<li>Numero de unidades: $unidades</li>";
-    echo "<li>URL de la imagen: $imagen</li>";
-    echo "</ul>";
+   echo 'Producto insertado correctamente';
 }
 else
 {
@@ -90,5 +81,5 @@ else {
         echo '[SERVIDOR] Nombre: '.$jsonOBJ->nombre;
     }
 
-  //  $link->close();
+   $link->close();
 ?>
