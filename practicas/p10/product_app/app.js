@@ -87,7 +87,7 @@ function buscarProducto (e){
                 let template = '';
                 // SE CREA UNA LISTA HTML CON LA DESCRIPCIÓN DEL PRODUCTO
 
-                productos.foreach(function(producto) {
+                productos.forEach(function(productos) {
 
                     let descripcion = '';
                     descripcion += '<li>precio: '+productos.precio+'</li>';
