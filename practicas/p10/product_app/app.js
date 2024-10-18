@@ -8,6 +8,30 @@ var baseJSON = {
     "imagen": "img/default.png"
   };
 
+  /* --------*/
+
+  fetch('./backend/create.php', { method: 'POST', headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(producto)
+})
+.then(response => response.json())
+.then(data => {
+    if (data.status === 'success') {
+        window.alert(data.message);  
+    } else {
+        window.alert(data.message);  
+    }
+})
+
+/*
+.catch(error => {
+    window.alert('Hubo un problema con la inserción: ' + error.message);
+});
+*/
+
+  /*------- */
+
 // FUNCIÓN CALLBACK DE BOTÓN "Buscar"
 function buscarID(e) {
     /**
