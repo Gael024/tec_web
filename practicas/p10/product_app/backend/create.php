@@ -1,6 +1,16 @@
 <?php
     include_once __DIR__.'/database.php';
 
+    @$link = new mysqli('localhost', 'root', '', 'marketzone');	
+
+    /** comprobar la conexión */
+if ($link->connect_errno) 
+{
+die('Falló la conexión: '.$link->connect_error.'<br/>');
+/** NOTA: con @ se suprime el Warning para gestionar el error por medio de código */
+}
+
+
     // SE OBTIENE LA INFORMACIÓN DEL PRODUCTO ENVIADA POR EL CLIENTE
     $producto = file_get_contents('php://input');
     if(!empty($producto)) {
@@ -18,14 +28,7 @@
         $eliminado = $_POST['eliminado'];
 */
 
-        @$link = new mysqli('localhost', 'root', '', 'marketzone');	
-
-        /** comprobar la conexión */
-if ($link->connect_errno) 
-{
-    die('Falló la conexión: '.$link->connect_error.'<br/>');
-    /** NOTA: con @ se suprime el Warning para gestionar el error por medio de código */
-}
+       
 
 
 $Validar = "SELECT * FROM productos WHERE nombre = ? AND eliminado = 0 ";
