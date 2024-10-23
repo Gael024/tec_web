@@ -60,51 +60,100 @@ $(document).ready(function(){
         //Validar datos
         var nombre = $('#name').val();
         var descripcion = $('#description').val();
-        var objectJSON = JSON.parse(descripcion);
+        var F_producto = JSON.parse(descripcion);
 
-        if (nombre === '') {
-            alert('¡Debes llenar el campo Nombre!');
-            e.preventDefault();
+        if (nombre === "") {
+            
+            alert('El nombre del producto es obligatorio, por favor rellenar el campo');
+            event.preventDefault();
             return;
-        } else if (objectJSON.marca === '') {
-            alert('¡Debes llenar el campo Marca!');
-            e.preventDefault();
-            return;
-        } else if (objectJSON.modelo === '') {
-            alert('¡Debes llenar el campo Modelo!');
-            e.preventDefault();
-            return;
-        } else if (isNaN(objectJSON.precio)) {
-            alert('¡Debes llenar el campo Precio correctamente!');
-            e.preventDefault();
-            return;
+        }
+        
+        if(nombre.length > 100){
+        
+        alert('El nombre del producto no puede ser mayor a 100 caracteres');
+           event.preventDefault();
+           return;
+        
         }
 
-        if (nombre.length > 100) {
-            alert('¡El campo nombre tiene más de 100 caracteres!');
-            e.preventDefault();
-            return;
-        }
-        if (objectJSON.modelo.length > 25) {
-            alert('¡El campo modelo tiene más de 25 caracteres!');
-            e.preventDefault();
-            return;
-        }
-        if (objectJSON.precio <= 99.99) {
-            alert('¡El precio debe ser mayor a 99.99!');
-            e.preventDefault();
-            return;
-        }
-        if (objectJSON.detalles.length > 250) {
-            alert('¡El campo detalles tiene más de 250 caracteres!');
-            e.preventDefault();
-            return;
-        }
-        if (isNaN(objectJSON.unidades) || objectJSON.unidades < 0) {
-            alert('¡El campo unidades debe ser un número mayor o igual a 0!');
-            e.preventDefault();
-            return;
-        }
+        
+            if(F_producto.marca === "") {
+        
+                alert('Por favor seleccione una marca');
+                event.preventDefault();
+                return;
+            }
+        
+        
+        
+            if(F_producto.modelo === ""){
+        
+                alert('El modelo del producto es obligatorio, por favor rellenar el campo');
+                event.preventDefault();
+                return;
+        
+            }
+        
+            if(F_producto.modelo.length > 25) {
+        
+                alert('El modelo del producto no puede superar los 25 caracteres');
+                event.preventDefault();
+                return;
+            }
+
+            
+        
+            if(isNaN(F_producto.precio)) {
+        
+                alert('El producto no puede ingresarse sin un precio');
+                event.preventDefault();
+                return;
+        
+            }
+        
+            if(F_producto.precio <100){
+        
+                alert('El precio minimo de un producto es de $100');
+                event.preventDefault();
+                return;
+            }
+
+            
+        
+            if(F_producto.detalles.length > 250) {
+        
+                alert('Los detalles del producto no deben superar los 250 caracteres');
+                event.preventDefault();
+                return;
+            }
+
+            
+        
+            if(isNaN(F_producto.unidades)) {
+        
+                alert('El campo "unidades" no puede quedar vacio');
+                event.preventDefault();
+                return;
+            }
+        
+            if(F_producto.unidades < 0){
+        
+                alert('El valor minimo del campo "unidades" es 0');
+                event.preventDefault();
+                return;
+            }
+
+            
+        
+            if (F_producto.imagen === "") {
+        
+                document.getElementById('imagen').value = "img/predeterminada.jpg";
+                alert('No se ha ingresado ninguna imagen, el producto se mostrará con una imagen por defecto');
+                return;
+            }
+
+
         //Enviar datos
         const postData ={
             name: $('#name').val(),
