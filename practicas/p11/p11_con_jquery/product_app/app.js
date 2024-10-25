@@ -24,17 +24,18 @@ $(document).ready(function(){
 
     let edit = false;
     console.log('La consulta esta trabajando');
-    $('#product-result').hide();
+    //$('#product-result').hide();
     fetchTasks();
 
-    $('search').keyup(function (e){
+    $('#search').keyup(function(e){
+       /*e.preventDafult(); */ 
 
         if($('#search').val()){
 
             let search = $('#search').val();
             $.ajax({
 
-                url: 'product-search.php',
+                url: 'backend/product-search.php',
                 type: 'POST',
                 data: { search },
 
@@ -44,13 +45,16 @@ $(document).ready(function(){
                     let template = '';
 
                     tasks.forEach(task => {
-                        template += '<li>
-                        $(task.name)
-                        </li>'
+                        template += `<li>
+                        ${task.nombre}
+                        </li>` 
                     });
 
                     $('#container').html(template);
-                    $('#product-result').show;
+                    //$('#product-result').show();
+                    $('#product-result').removeClass('d-none');
+
+                    /* */
                 }
 
             });
@@ -60,17 +64,20 @@ $(document).ready(function(){
     $('#product-form').submit (function (e){
         const postData = {
             name: $('#name').val(),
-            description: $('description').val(),
-            id: $('taskId').val()
+            description: $('#description').val(),
+            id: $('#taskId').val()
         };
 
-        let url = edit === false ? 'product-add.php' : 'product-edit.php';
+        let url = edit === false ? 'backend/product-add.php' : 'backend/product-edit.php';
+        console.log(url);
 
 
         $.post(url, postData, function (response){
+            $('#container').html(response);
+            $('#product-result').removeClass('d-none');
             fetchTasks();
-
             $('#product-form').trigger('reset');
+            init();
         });
         e.preventDafult();
     });
@@ -81,29 +88,32 @@ $(document).ready(function(){
 
     
     $.ajax ({
-        url: 'product-list.php',
+        url: 'backend/product-list.php',
         type: 'GET',
         success: function (response) {
             let tasks = JSON.parse(response);
             let template = '';
             tasks.forEach(task => {
-                templeta += '
-                <tr taskId="$(task.id)">
-                
-                       <td>$(task.id)</td>
-                       <td>
-
-                         <a href="#" class="task-item">$(task.name)</a>
-
-                       </td>
-                       <td>$(task.description)</td>
-                       <td>
-                              <button class="task-delete btn btn-danger">Eliminar</button>
-
-                       </td>
-                
-                </tr>
-            '
+                template += `
+                        <tr taskID="${task.id}">
+                            <td>${task.id}</td>
+                            <td>
+                                <a href="#" class="task-item">${task.nombre}</a>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>precio: ${task.precio}</li>
+                                    <li>unidades: ${task.unidades}</li>
+                                    <li>modelo: ${task.modelo}</li>
+                                    <li>marca: ${task.marca}</li>
+                                    <li>detalles: ${task.detalles}</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <button class="task-delete btn btn-danger">Eliminar</button>
+                            </td>
+                        </tr>
+            `
             });
             $('#products').html(template);
         }
@@ -119,7 +129,8 @@ $(document).ready(function(){
        
     let element = $(this)[0].parentElement.parentElement;
     let id =  $(element).attr('taskId');
-    $.post('product-delete.php', {id}, function (response){
+    $.post('backend/product-delete.php', {id}, function (response){
+        $('#container').html(response);
         fetchTasks();
     })
 
@@ -132,11 +143,14 @@ $(document).ready(function(){
  $(document).on('click', '.task-item', function(){
     let element = $(this)[0].parentElement.parentElement;
     let id = $(element).attr('taskId');
-    $.post('product-single.php', {id}, function(response){
+    $.post('backend/product-single.php', {id}, function(response){
         const task = JSON.parse(response);
-        $('#name').val(task.name);
-        $('#description').val(task.description);
         $('#taskId').val(task.id);
+        $('#name').val(task.nombre);
+        delete task.id;
+        delete task.nombre;
+        $('#description').val(JSON.stringify(task, null, 2));
+       
         edit = true;
     })
  });

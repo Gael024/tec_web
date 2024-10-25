@@ -1,17 +1,17 @@
 <?php
 
 include('database.php');
-$id = $_POST['id'];
-$query = "SELECT * FROM productos WHERE id = $id";
-$result = mysqli_query($connection, $query);
-if(!$result){
 
+$id= $_POST['id'];
+$query = "SELECT * FROM productos WHERE id=$id";
+$result= mysqli_query($conexion,$query);
+if(!$result){
     die('Consulta fallida');
 }
-
 $json = array();
-while($row = mysqli_fetch_array($result)){
-    $json[] = array(
+$row = mysqli_fetch_array($result);
+$json = array(
+        'id' => $row['id'],
         'nombre' => $row['nombre'],
         'marca'=> $row['marca'],
         'modelo' => $row['modelo'],
@@ -22,9 +22,9 @@ while($row = mysqli_fetch_array($result)){
      
 
     );
-}
 
-$jsonstring = json_encode($json[0]);
+
+$jsonstring = json_encode($json);
 echo $jsonstring;
 
 
