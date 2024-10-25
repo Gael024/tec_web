@@ -17,7 +17,7 @@ function init() {
     document.getElementById("description").value = JsonString;
 
     // SE LISTAN TODOS LOS PRODUCTOS
-    listarProductos();
+    //listarProductos();
 }
 
 $(document).ready(function(){
