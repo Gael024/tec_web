@@ -13,7 +13,7 @@ class DataBase {
             $user = 'root',
             $pass = '',
             $db = 'marketzone'
-        )
+        );
 
     
 }
