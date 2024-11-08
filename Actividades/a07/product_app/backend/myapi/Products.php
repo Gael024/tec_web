@@ -23,7 +23,7 @@ class Products extends DataBase {
         public function add($jsonOBJ, $nom) {
 
             
-    // SE OBTIENE LA INFORMACIÓN DEL PRODUCTO ENVIADA POR EL CLIENTE
+   
     $this->response = array(
         'status'  => 'error',
         'message' => 'Ya existe un producto con ese nombre'

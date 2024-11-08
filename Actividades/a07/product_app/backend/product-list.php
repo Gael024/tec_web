@@ -1,5 +1,7 @@
 <?php
 
+namespace TECWEB\MYAPI;
+
 
 use TECWEB\MYAPI\Products;
 
