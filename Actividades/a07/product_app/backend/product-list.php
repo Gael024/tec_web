@@ -1,8 +1,5 @@
 <?php
 
-namespace TECWEB\MYAPI;
-
-
 use TECWEB\MYAPI\Products;
 
 require_once __DIR__. '/myapi/Products.php';

@@ -4,7 +4,7 @@ namespace TECWEB\MYAPI;
 
 use TECWEB\MYAPI\DataBase;
 
-require_once __DIR__. '/DataBase.php';
+require_once __DIR__. 'C:/XAMPP/htdocs/tec_web/Actividades/a07/product_app/backend/myapi/DataBase.php';
 
 class Products extends DataBase {
 
