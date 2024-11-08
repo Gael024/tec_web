@@ -9,7 +9,7 @@ $jsonObj = json_decode($_POST['description']);
 $productId = $_POST['producto_id'];
 $jsonObj->id = $productId;
 $productos->edit($jsonObj, $_POST['name']);
-$productos->getData();
+$productos->getResponse();
 
 /*
     include_once __DIR__.'/database.php';

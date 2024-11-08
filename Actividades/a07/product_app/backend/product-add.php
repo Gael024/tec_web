@@ -8,7 +8,7 @@ require_once __DIR__. '/myapi/Products.php';
 $productos = new Products('marketzone');
     $jsonObj = json_decode($_POST['description']);
     $productos->add($jsonObj, $_POST['name']);
-    $productos->getData();
+    $productos->getResponse();
 
 
 

@@ -215,12 +215,11 @@ class Products extends DataBase {
 
         }
 
-        public function getData(){
-              
+        public function getResponse() {
             header('Content-Type: application/json');
             echo json_encode($this->response);
-
-        }
+            exit;
+       }
     
 
     }
