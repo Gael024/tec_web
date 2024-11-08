@@ -1,15 +1,14 @@
 <?php
 
-namespace TECWEB\MYAPI;
 
 use TECWEB\MYAPI\Products;
 
 require_once __DIR__. '/myapi/Products.php';
 
-$product = new Products('marketzone', 'root', '');
-$product->add(json_decode(json_encode($_POST)));
-echo $product->getData();
-
+$productos = new Products('marketzone');
+    $jsonObj = json_decode($_POST['description']);
+    $productos->add($jsonObj, $_POST['name']);
+    $productos->getData();
 
 
 

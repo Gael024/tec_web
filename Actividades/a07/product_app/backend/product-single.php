@@ -1,13 +1,13 @@
 <?php
-namespace TECWEB\MYAPI;
+
 
 use TECWEB\MYAPI\Products;
 
 require_once __DIR__. '/myapi/Products.php';
 
-$product = new Products('marketzone', 'root', '');
-$product->single($search);
-echo $product->getData();
+$productos = new Products('marketzone');
+$productos->single($_POST['id']);
+$productos->getData();
 
 
 /*

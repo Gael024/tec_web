@@ -15,216 +15,210 @@ class Products extends DataBase {
            
         $this->response = array();
 
-        parent::__construct($user, $pass, $db);
+        parent::__construct($db,$user, $pass);
 
     }
         
 
-        public function add($jsonOBJ) {
+        public function add($jsonOBJ, $nom) {
 
-
+            
     // SE OBTIENE LA INFORMACIÓN DEL PRODUCTO ENVIADA POR EL CLIENTE
-    $data = array(
+    $this->response = array(
         'status'  => 'error',
         'message' => 'Ya existe un producto con ese nombre'
     );
-    if(isset($_POST['nombre'])) {
-        // SE TRANSFORMA EL POST A UN STRING EN JSON, Y LUEGO A OBJETO
-        $jsonOBJ = json_decode( json_encode($_POST) );
-        // SE ASUME QUE LOS DATOS YA FUERON VALIDADOS ANTES DE ENVIARSE
-        $sql = "SELECT * FROM productos WHERE nombre = '{$jsonOBJ->nombre}' AND eliminado = 0";
-	    $result = $conexion->query($sql);
-        
-        if ($result->num_rows == 0) {
-            $conexion->set_charset("utf8");
-            $sql = "INSERT INTO productos VALUES (null, '{$jsonOBJ->nombre}', '{$jsonOBJ->marca}', '{$jsonOBJ->modelo}', {$jsonOBJ->precio}, '{$jsonOBJ->detalles}', {$jsonOBJ->unidades}, '{$jsonOBJ->imagen}', 0)";
-            if($conexion->query($sql)){
-                $data['status'] =  "success";
-                $data['message'] =  "Producto agregado";
+
+    $nombre = $nom;
+                
+            $this->connection->set_charset("utf8");
+            $sql = "SELECT * FROM productos WHERE nombre = '{$nombre}' AND eliminado = 0";
+            $result = $this->connection->query($sql);
+    
+            if ($result->num_rows == 0) {
+                $sql = "INSERT INTO productos (nombre, marca, modelo, precio, detalles, unidades, imagen, eliminado) 
+                        VALUES ('{$nombre}', '{$JsonObj->marca}', '{$JsonObj->modelo}', {$JsonObj->precio}, '{$JsonObj->detalles}', {$JsonObj->unidades}, '{$JsonObj->imagen}', 0)";
+    
+                if ($this->connection->query($sql)) {
+                    $this->response['status'] = "success";
+                    $this->response['message'] = "Producto agregado correctamente";
+                } else {
+                    $this->response['message'] = "No se ejecutó el SQL. " . $this->connection->error;
+                }
             } else {
-                $data['message'] = "ERROR: No se ejecuto $sql. " . mysqli_error($conexion);
+                $this->response['message'] = "Ya existe un producto con el mismo nombre.";
             }
+            $result->free();
+    
+        $this->connection->close();
+        
         }
 
-        $result->free();
-        // Cierra la conexion
-        $conexion->close();
-    }
 
-    // SE HACE LA CONVERSIÓN DE ARRAY A JSON
-    echo json_encode($data, JSON_PRETTY_PRINT);
+    
 
-        }
 
         public function delete($id){
 
+            $this->response = array(
+                'status' => 'error',
+                'message' => 'La consulta falló'
+            );
+            $id = $Id;
+            $query = "UPDATE productos SET eliminado = 1 WHERE id = {$id}";
+            $result = mysqli_query($this->connection, $query);
+        
+            if($result){
+                $this->response['status'] = "success";
+                $this->response['message'] = "Producto eliminado";
+            } else {
+                $this->response['message'] = "ERROR: No se ejecutó la consulta. " . mysqli_error($this->connection);
+            }
             
 
-    // SE CREA EL ARREGLO QUE SE VA A DEVOLVER EN FORMA DE JSON
-    $data = array(
-        'status'  => 'error',
-        'message' => 'La consulta falló'
-    );
-    // SE VERIFICA HABER RECIBIDO EL ID
-    if( isset($_POST['id']) ) {
-        $id = $_POST['id'];
-        // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
-        $sql = "UPDATE productos SET eliminado=1 WHERE id = {$id}";
-        if ( $conexion->query($sql) ) {
-            $data['status'] =  "success";
-            $data['message'] =  "Producto eliminado";
-		} else {
-            $data['message'] = "ERROR: No se ejecuto $sql. " . mysqli_error($conexion);
-        }
-		$conexion->close();
-    } 
-    
-    // SE HACE LA CONVERSIÓN DE ARRAY A JSON
-    echo json_encode($data, JSON_PRETTY_PRINT);
-
         }
 
-        public function edit (){
+        public function edit ($jsonOBJ, $nom){
 
-            
-    include_once __DIR__.'/database.php';
-
-    // SE CREA EL ARREGLO QUE SE VA A DEVOLVER EN FORMA DE JSON
-    $data = array(
-        'status'  => 'error',
-        'message' => 'La consulta falló'
-    );
-    // SE VERIFICA HABER RECIBIDO EL ID
-    if( isset($_POST['id']) ) {
-        $jsonOBJ = json_decode( json_encode($_POST) );
-        // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
-        $sql =  "UPDATE productos SET nombre='{$jsonOBJ->nombre}', marca='{$jsonOBJ->marca}',";
-        $sql .= "modelo='{$jsonOBJ->modelo}', precio={$jsonOBJ->precio}, detalles='{$jsonOBJ->detalles}',"; 
-        $sql .= "unidades={$jsonOBJ->unidades}, imagen='{$jsonOBJ->imagen}' WHERE id={$jsonOBJ->id}";
-        $conexion->set_charset("utf8");
-        if ( $conexion->query($sql) ) {
-            $data['status'] =  "success";
-            $data['message'] =  "Producto actualizado";
-		} else {
-            $data['message'] = "ERROR: No se ejecuto $sql. " . mysqli_error($conexion);
-        }
-		$conexion->close();
-    } 
-    
-    // SE HACE LA CONVERSIÓN DE ARRAY A JSON
-    echo json_encode($data, JSON_PRETTY_PRINT);
+            if (!isset($JsonObj->id)) {
+                $this->response['message'] = "Falta el ID del producto";
+                return;
+            }
+            $this->response = array(
+                'status' => 'error',
+                'message' => 'No se pudo actualizar el producto'
+            );
+            $nombre = $nom;
+            $id = $JsonObj->id;
+            $this->connection->set_charset("utf8");
+            if (!empty($nombre)) {
+                $sql = "UPDATE productos SET nombre = '{$nombre}', marca = '{$JsonObj->marca}', modelo = '{$JsonObj->modelo}', precio = {$JsonObj->precio}, 
+                detalles = '{$JsonObj->detalles}', unidades = {$JsonObj->unidades}, imagen = '{$JsonObj->imagen}' WHERE id = {$id}"; 
+                $result = $this->connection->query($sql);
+                if ($this->connection->query($sql) === TRUE) {
+                    $this->response['status'] = "success";
+                    $this->response['message'] = "Producto actualizada correctamente";
+                }
+            }
 
         }
 
         public function list(){
 
-            include_once __DIR__.'/database.php';
-
-    // SE CREA EL ARREGLO QUE SE VA A DEVOLVER EN FORMA DE JSON
-    $data = array();
-
-    // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
-    if ( $result = $conexion->query("SELECT * FROM productos WHERE eliminado = 0") ) {
-        // SE OBTIENEN LOS RESULTADOS
-        $rows = $result->fetch_all(MYSQLI_ASSOC);
-
-        if(!is_null($rows)) {
-            // SE CODIFICAN A UTF-8 LOS DATOS Y SE MAPEAN AL ARREGLO DE RESPUESTA
-            foreach($rows as $num => $row) {
-                foreach($row as $key => $value) {
-                    $data[$num][$key] = utf8_encode($value);
-                }
+            $query = "SELECT * FROM productos WHERE eliminado = 0";
+            $result = $this->connection->query($query);
+        
+            if (!$result) {
+                $this->response = ['error' => 'Query Failed', 'message' => $this->connection->error];
+                return;
             }
-        }
-        $result->free();
-    } else {
-        die('Query Error: '.mysqli_error($conexion));
-    }
-    $conexion->close();
-    
-    // SE HACE LA CONVERSIÓN DE ARRAY A JSON
-    echo json_encode($data, JSON_PRETTY_PRINT);
-
-        }
-
-        public function search($rows){
-
             
-    include_once __DIR__.'/database.php';
-
-    // SE CREA EL ARREGLO QUE SE VA A DEVOLVER EN FORMA DE JSON
-    $data = array();
-    // SE VERIFICA HABER RECIBIDO EL ID
-    if( isset($_GET['search']) ) {
-        $search = $_GET['search'];
-        // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
-        $sql = "SELECT * FROM productos WHERE (id = '{$search}' OR nombre LIKE '%{$search}%' OR marca LIKE '%{$search}%' OR detalles LIKE '%{$search}%') AND eliminado = 0";
-        if ( $result = $conexion->query($sql) ) {
-            // SE OBTIENEN LOS RESULTADOS
-			$rows = $result->fetch_all(MYSQLI_ASSOC);
-
-            if(!is_null($rows)) {
-                // SE CODIFICAN A UTF-8 LOS DATOS Y SE MAPEAN AL ARREGLO DE RESPUESTA
-                foreach($rows as $num => $row) {
-                    foreach($row as $key => $value) {
-                        $data[$num][$key] = utf8_encode($value);
-                    }
-                }
+            $data = [];
+            while ($row = $result->fetch_assoc()) {
+                $data[] = array(
+                    'id' => $row['id'],
+                    'nombre' => $row['nombre'],
+                    'precio' => $row['precio'],
+                    'unidades' => $row['unidades'],
+                    'marca' => $row['marca'],
+                    'modelo' => $row['modelo'],
+                    'detalles' => $row['detalles']
+                );
             }
-			$result->free();
-		} else {
-            die('Query Error: '.mysqli_error($conexion));
+            
+            $this->response = $data; 
+
         }
-		$conexion->close();
+
+        public function search($sear){
+
+ $search = $sear;
+            $query = "SELECT * FROM productos WHERE (id = '{$search}' OR nombre LIKE '%{$search}%' OR marca LIKE '%{$search}%' OR detalles LIKE '%{$search}%') AND eliminado = 0";
+            $result = $this->connection->query($query); 
+            
+            if (!$result) {
+                die('Query Failed: ' . $this->connection->error);
+            }
+            
+            $json = array();
+            while ($row = $result->fetch_assoc()) { 
+                $json[] = array(
+                    'id' => $row['id'],
+                    'nombre' => $row['nombre'],
+                    'precio' => $row['precio'],
+                    'unidades' => $row['unidades'],
+                    'marca' => $row['marca'],
+                    'modelo' => $row['modelo'],
+                    'detalles' => $row['detalles']
+                );
+            }
+            
+            $this->response = $json; 
+      
     } 
     
-    // SE HACE LA CONVERSIÓN DE ARRAY A JSON
-    echo json_encode($data, JSON_PRETTY_PRINT);
 
-        }
+        
 
-        public function single($search){
+        public function single($id){
 
-            include_once __DIR__.'/database.php';
-
-    // SE CREA EL ARREGLO QUE SE VA A DEVOLVER EN FORMA DE JSON
-    $data = array();
-
-    if( isset($_POST['id']) ) {
-        $id = $_POST['id'];
-        // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
-        if ( $result = $conexion->query("SELECT * FROM productos WHERE id = {$id}") ) {
-            // SE OBTIENEN LOS RESULTADOS
-            $row = $result->fetch_assoc();
-
-            if(!is_null($row)) {
-                // SE CODIFICAN A UTF-8 LOS DATOS Y SE MAPEAN AL ARREGLO DE RESPUESTA
-                foreach($row as $key => $value) {
-                    $data[$key] = utf8_encode($value);
-                }
-            }
-            $result->free();
-        } else {
-            die('Query Error: '.mysqli_error($conexion));
-        }
-        $conexion->close();
-    }
-
-    // SE HACE LA CONVERSIÓN DE ARRAY A JSON
-    echo json_encode($data, JSON_PRETTY_PRINT);
-
-
-        }
-
-        public function singleByName(){
-
+            $search = $sear;
+            $query = "SELECT * FROM productos WHERE (id = '{$search}' OR nombre LIKE '%{$search}%' OR marca LIKE '%{$search}%' OR detalles LIKE '%{$search}%') AND eliminado = 0";
+            $result = $this->connection->query($query); 
             
+            if (!$result) {
+                die('Query Failed: ' . $this->connection->error);
+            }
+            
+            $json = array();
+            while ($row = $result->fetch_assoc()) { 
+                $json[] = array(
+                    'id' => $row['id'],
+                    'nombre' => $row['nombre'],
+                    'precio' => $row['precio'],
+                    'unidades' => $row['unidades'],
+                    'marca' => $row['marca'],
+                    'modelo' => $row['modelo'],
+                    'detalles' => $row['detalles']
+                );
+            }
+            
+            $this->response = $json; 
+
+        }
+
+        public function singleByName($nom){
+
+            $nombre = $nom;
+            $query = "SELECT * FROM productos WHERE nombre = '{$nombre}'"; 
+            $result = mysqli_query($this->connection, $query);
+        
+            if (!$result) {
+                die('Query Failed');
+            }
+        
+            $row = mysqli_fetch_array($result);
+            if ($row) {
+                $this->response = array(
+                    'id' => $row['id'],
+                    'nombre' => $row['nombre'],
+                    'marca' => $row['marca'],
+                    'modelo' => $row['modelo'],
+                    'precio' => $row['precio'],
+                    'detalles' => $row['detalles'],
+                    'unidades' => $row['unidades'],
+                    'imagen' => $row['imagen']
+                );
+            } else {
+                $this->response = ['error' => 'Producto no encontrado'];
+            }
 
         }
 
         public function getData(){
               
-            return json_encode($this->response);
+            header('Content-Type: application/json');
+            echo json_encode($this->response);
 
         }
     

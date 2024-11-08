@@ -9,7 +9,7 @@ abstract class DataBase {
     public function __construct($user, $pass, $db) {
 
         $this->conexion = @mysqli_connect(
-             'localhost',
+            'localhost',
             $user,
             $pass,
             $db
@@ -20,7 +20,7 @@ abstract class DataBase {
      * NOTA: si la conexión falló $conexion contendrá false
      **/
     
-    if(!$conexion) {
+    if(!$this->conexion) {
         die('¡Base de datos NO conextada!');
     }
 

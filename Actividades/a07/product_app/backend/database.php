@@ -1,9 +1,5 @@
 <?php
-namespace TECWEB\MYAPI;
 
-use TECWEB\MYAPI\Products;
-
-$product1 = new Products;
 /*
     $conexion = @mysqli_connect(
         'localhost',
