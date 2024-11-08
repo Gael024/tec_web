@@ -123,6 +123,9 @@ class Products extends DataBase {
                     'marca' => $row['marca'],
                     'modelo' => $row['modelo'],
                     'detalles' => $row['detalles']
+
+
+                   
                 );
             }
             
