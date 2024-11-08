@@ -31,26 +31,26 @@ class Products extends DataBase {
 
     $nombre = $nom;
                 
-            $this->connection->set_charset("utf8");
+            $this->conexion->set_charset("utf8");
             $sql = "SELECT * FROM productos WHERE nombre = '{$nombre}' AND eliminado = 0";
-            $result = $this->connection->query($sql);
+            $result = $this->conexion->query($sql);
     
             if ($result->num_rows == 0) {
                 $sql = "INSERT INTO productos (nombre, marca, modelo, precio, detalles, unidades, imagen, eliminado) 
                         VALUES ('{$nombre}', '{$JsonObj->marca}', '{$JsonObj->modelo}', {$JsonObj->precio}, '{$JsonObj->detalles}', {$JsonObj->unidades}, '{$JsonObj->imagen}', 0)";
     
-                if ($this->connection->query($sql)) {
+                if ($this->conexion->query($sql)) {
                     $this->response['status'] = "success";
                     $this->response['message'] = "Producto agregado correctamente";
                 } else {
-                    $this->response['message'] = "No se ejecutó el SQL. " . $this->connection->error;
+                    $this->response['message'] = "No se ejecutó el SQL. " . $this->conexion->error;
                 }
             } else {
                 $this->response['message'] = "Ya existe un producto con el mismo nombre.";
             }
             $result->free();
     
-        $this->connection->close();
+        $this->conexion->close();
         
         }
 
@@ -66,13 +66,13 @@ class Products extends DataBase {
             );
             $id = $Id;
             $query = "UPDATE productos SET eliminado = 1 WHERE id = {$id}";
-            $result = mysqli_query($this->connection, $query);
+            $result = mysqli_query($this->conexion, $query);
         
             if($result){
                 $this->response['status'] = "success";
                 $this->response['message'] = "Producto eliminado";
             } else {
-                $this->response['message'] = "ERROR: No se ejecutó la consulta. " . mysqli_error($this->connection);
+                $this->response['message'] = "ERROR: No se ejecutó la consulta. " . mysqli_error($this->conexion);
             }
             
 
@@ -90,12 +90,12 @@ class Products extends DataBase {
             );
             $nombre = $nom;
             $id = $JsonObj->id;
-            $this->connection->set_charset("utf8");
+            $this->conexion->set_charset("utf8");
             if (!empty($nombre)) {
                 $sql = "UPDATE productos SET nombre = '{$nombre}', marca = '{$JsonObj->marca}', modelo = '{$JsonObj->modelo}', precio = {$JsonObj->precio}, 
                 detalles = '{$JsonObj->detalles}', unidades = {$JsonObj->unidades}, imagen = '{$JsonObj->imagen}' WHERE id = {$id}"; 
-                $result = $this->connection->query($sql);
-                if ($this->connection->query($sql) === TRUE) {
+                $result = $this->conexion->query($sql);
+                if ($this->conexion->query($sql) === TRUE) {
                     $this->response['status'] = "success";
                     $this->response['message'] = "Producto actualizada correctamente";
                 }
@@ -106,10 +106,10 @@ class Products extends DataBase {
         public function list(){
 
             $query = "SELECT * FROM productos WHERE eliminado = 0";
-            $result = $this->connection->query($query);
+            $result = $this->conexion->query($query);
         
             if (!$result) {
-                $this->response = ['error' => 'Query Failed', 'message' => $this->connection->error];
+                $this->response = ['error' => 'Query Failed', 'message' => $this->conexion->error];
                 return;
             }
             
@@ -134,10 +134,10 @@ class Products extends DataBase {
 
  $search = $sear;
             $query = "SELECT * FROM productos WHERE (id = '{$search}' OR nombre LIKE '%{$search}%' OR marca LIKE '%{$search}%' OR detalles LIKE '%{$search}%') AND eliminado = 0";
-            $result = $this->connection->query($query); 
+            $result = $this->conexion->query($query); 
             
             if (!$result) {
-                die('Query Failed: ' . $this->connection->error);
+                die('Query Failed: ' . $this->conexion->error);
             }
             
             $json = array();
@@ -167,7 +167,7 @@ class Products extends DataBase {
             $result = $this->connection->query($query); 
             
             if (!$result) {
-                die('Query Failed: ' . $this->connection->error);
+                die('Query Failed: ' . $this->conexion->error);
             }
             
             $json = array();
@@ -191,7 +191,7 @@ class Products extends DataBase {
 
             $nombre = $nom;
             $query = "SELECT * FROM productos WHERE nombre = '{$nombre}'"; 
-            $result = mysqli_query($this->connection, $query);
+            $result = mysqli_query($this->conexion, $query);
         
             if (!$result) {
                 die('Query Failed');
