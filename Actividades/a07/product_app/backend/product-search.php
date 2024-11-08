@@ -2,7 +2,12 @@
 namespace TECWEB\MYAPI;
 
 use TECWEB\MYAPI\Products;
-$product6 = new Products;
+
+require_once __DIR__. '/myapi/Products.php';
+
+$product = new Products('marketzone', 'root', '');
+$product->search($rows);
+echo $product->getData();
 
 /*
     include_once __DIR__.'/database.php';

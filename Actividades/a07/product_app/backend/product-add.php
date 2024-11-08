@@ -6,9 +6,9 @@ use TECWEB\MYAPI\Products;
 
 require_once __DIR__. '/myapi/Products.php';
 
-$product2 = new Products('marketzone', 'root', '');
-$product2->add(json_decode(json_encode($_POST)));
-echo $product2->getData();
+$product = new Products('marketzone', 'root', '');
+$product->add(json_decode(json_encode($_POST)));
+echo $product->getData();
 
 
 
