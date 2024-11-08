@@ -2,18 +2,27 @@
 
 namespace TECWEB\MYAPI;
 
-class DataBase {
+abstract class DataBase {
 
     protected $conexion;
 
     public function __construct($user, $pass, $db) {
 
         $this->conexion = @mysqli_connect(
-
-            $user = 'root',
-            $pass = '',
-            $db = 'marketzone'
+             'localhost',
+            $user,
+            $pass,
+            $db
         );
+
+        
+    /**
+     * NOTA: si la conexión falló $conexion contendrá false
+     **/
+    
+    if(!$conexion) {
+        die('¡Base de datos NO conextada!');
+    }
 
     
 }

@@ -8,12 +8,12 @@ require_once __DIR__. '/DataBase.php';
 
 class Products extends DataBase {
 
-    private $data;
+    private $response;
 
-    public function __construct($user='root', $pass='', $db='marketzone'){
+    public function __construct($db, $user='root', $pass=''){
 
            
-        $this->data = array();
+        $this->response = array();
 
         parent::__construct($user, $pass, $db);
 
@@ -51,6 +51,8 @@ class Products extends DataBase {
         }
 
         public function getData(){
+              
+            return json_encode($this->response);
 
         }
     
