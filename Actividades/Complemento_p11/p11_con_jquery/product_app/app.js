@@ -1,4 +1,6 @@
 // JSON BASE A MOSTRAR EN FORMULARIO
+
+
 var baseJSON = {
     "precio": 0.0,
     "unidades": 1,
@@ -7,6 +9,8 @@ var baseJSON = {
     "detalles": "NA",
     "imagen": "img/default.png"
   };
+  
+  
 
 $(document).ready(function(){
     let edit = false;
@@ -118,19 +122,60 @@ $(document).ready(function(){
         }
     });
 
+
+    $('#product-form').submit(function(e){
+        var nombre = $('#nombre').val();
+        var modelo = $('#modelo').val();
+        var precio = parseFloat($('#precio').val());
+        var detalles = $('#detalles').val();
+        var unidades = parseInt($('#unidades').val());
+        var imagen = $('#imagen').val();
+
+        if (nombre === '' || modelo === '' || isNaN(precio) || precio <= 0 || detalles === '' || isNaN(unidades) || unidades <= 0) {
+            alert('Rellenar los campos obligatorios');
+            e.preventDefault();
+            return;
+        }
+
+        const postData ={
+            nombre: $('#nombre').val(),
+            marca: $('#marca').val(),
+            modelo: $('#modelo').val(),
+            precio: $('#precio').val(),
+            detalles: $('#detalles').val(),
+            unidades: $('#unidades').val(),
+            imagen: imagen,
+            producto_id: $('#producto_id').val()
+        };
+
+        let Url = edit === false ? 'backend/product-add.php' : 'backend/product-edit.php';
+        console.log(Url);
+        console.log(postData);
+
+        $.post(Url,postData, function(response){
+            $('#container').html(response);
+            $('#product-result').removeClass('d-none');
+            mostrarlista();
+            $('#product-form').trigger('reset');
+        })
+        e.preventDefault();
+    })
+
+    /*
     $('#product-form').submit(e => {
         e.preventDefault();
 
         // SE CONVIERTE EL JSON DE STRING A OBJETO
-        let postData = JSON.parse( $('#description').val() );
-        // SE AGREGA AL JSON EL NOMBRE DEL PRODUCTO
-        postData['nombre'] = $('#name').val();
-        postData['id'] = $('#productId').val();
-
-        /**
-         * AQUÍ DEBES AGREGAR LAS VALIDACIONES DE LOS DATOS EN EL JSON
-         * --> EN CASO DE NO HABER ERRORES, SE ENVIAR EL PRODUCTO A AGREGAR
-         **/
+        let postData = {
+            nombre: $('#nombre').val(),
+            marca: $('#marca').val(),
+            modelo: $('#modelo').val(),
+            precio: $('#precio').val(),
+            detalles: $('#detalles').val(),
+            unidades: $('#unidades').val(),
+            imagen: $('#imagen').val(),
+            id: $('#productId').val() 
+        };
 
         const url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
         
@@ -157,6 +202,7 @@ $(document).ready(function(){
             edit = false;
         });
     });
+*/
 
     $(document).on('click', '.product-delete', (e) => {
         if(confirm('¿Realmente deseas eliminar el producto?')) {
@@ -194,3 +240,144 @@ $(document).ready(function(){
         e.preventDefault();
     });    
 });
+
+/*------------ */
+$('#nombre').on('input blur', function() {
+    const nombre = $(this).val();
+    const statusBar = $('#nombreStatus'); 
+    $('#nombre').next('small').remove();
+    if (nombre === '') {
+        $('#nombre').after('<small style="color: white;">Campo obligatorio</small>');
+        statusBar.addClass('red'); 
+    } else if(nombre.length >= 100){
+        $('#nombre').after('<small style="color: white;">El nombre no puede superar los 100 caracteres</small>');
+        statusBar.addClass('yellow'); 
+    }else {
+        statusBar.addClass('green');
+        console.log("Estado: green");
+    }
+});
+/*
+$('#marca').on('input blur', function() {
+    const marca = $(this).val();
+    const statusBar = $('#marcaStatus'); 
+    statusBar.removeClass('d-none red green yellow');
+    $('#marca').next('small').remove();
+    if(marca === 'Marca del producto'){
+        statusBar.addClass('red'); 
+        $('#marca').after('<small style="color: white;">...</small>');
+    }else{
+        statusBar.addClass('green');
+    }
+});
+*/
+$('#modelo').on('input blur', function() {
+    const modelo = $(this).val();
+    const statusBar = $('#modeloStatus'); 
+    $('#modelo').next('small').remove();
+    if (modelo === '') {
+        statusBar.addClass('red'); 
+        $('#modelo').after('<small style="color: white;">Campo obligatorio</small>');
+    }else if(modelo.length >= 25){
+        $('#modelo').after('<small style="color: white;">El modelo no puede superar los 25 caracteres</small>');
+        statusBar.addClass('yellow'); 
+    } 
+    else if(modelo.length < 25){
+        $('#modelo').after('<small style="color: white;">Campo validado</small>');
+        statusBar.addClass('yellow'); 
+    }else {
+        statusBar.addClass('green');
+    }
+});
+$('#precio').on('input blur', function(){
+    const precio = parseFloat($(this).val());
+    const statusBar = $('#precioStatus'); 
+    $('#precio').next('small').remove();
+    if(isNaN(precio)){
+        statusBar.addClass('red'); 
+        $('#precio').after('<small style="color: white;">¡Campo obligatorio</small>');
+    }else if (precio <= 99.99) {
+        statusBar.addClass('yellow'); 
+        $('#precio').after('<small style="color: white;">El precio no puede ser menor a 100</small>');
+    }
+    else if (precio > 99.99) {
+        statusBar.addClass('yellow'); 
+        $('#precio').after('<small style="color: white;">Campo validado</small>');
+    }else{
+        statusBar.addClass('green');
+    }
+});
+$('#detalles').on('input blur', function(){
+    const detalles = $(this).val();
+    const statusBar = $('#detallesStatus'); 
+    $('#detalles').next('small').remove();
+    if(detalles === ''){
+        statusBar.addClass('red'); 
+        $('#detalles').after('<small style="color: white;">Campo obligatorio</small>');
+    }else if(detalles.length >=250){
+        statusBar.addClass('yellow'); 
+        $('#detalles').after('<small style="color: white;">No puede ingresar más de 250 caracteres>');
+    }
+    else if(detalles.length < 250){
+        statusBar.addClass('yellow'); 
+        $('#detalles').after('<small style="color: white;">Campo validado>');
+    }else{
+        statusBar.addClass('green');
+    }
+});
+$('#unidades').on('input blur', function(){
+    const unidades = parseInt($(this).val());
+    const statusBar = $('#unidadesStatus'); 
+    $('#unidades').next('small').remove();
+    if(isNaN(unidades)){
+        statusBar.addClass('red'); 
+        $('#unidades').after('<small style="color: white;">Campo obligatorio</small>');
+    }else if (unidades >= 0) {
+        statusBar.addClass('yellow'); 
+        $('#unidades').after('<small style="color: white;">Campo validado</small>');
+    }
+    else if (unidades < 0) {
+        statusBar.addClass('yellow'); 
+        $('#unidades').after('<small style="color: white;">No se acpetan valores negativos</small>');
+    }else{
+        statusBar.addClass('green');
+    }
+});
+$('#imagen').on('input blur', function(){
+    const imagen = $(this).val();
+    const statusBar = $('#imagenStatus'); 
+    $('#imagen').next('small').remove();
+    if(imagen === ''){
+        statusBar.addClass('red'); 
+        $('#imagen').after('<small style="color: white;">Campo obligatorio</small>');
+    }else{
+        statusBar.addClass('green');
+    }
+});
+
+$('#nombre').on('input', function () {
+    let nombre = $(this).val();
+    if (nombre.length > 0) {
+        $.ajax({
+            url: 'backend/ValidarNombre.php',
+            type: 'POST',
+            data: { nombre: nombre },
+            success: function (response) {
+                const statusBar = $('#nombreStatus'); 
+                statusBar.removeClass('d-none red green yellow');
+                if (response === 'existe') {
+                    $('#nombre').next('small').remove();
+                    $('#nombre').after('<small style="color: white;">El nombre ya existe en la DB.</small>');
+                    statusBar.addClass('red');
+                } else {
+                    $('#nombre').next('small').remove();
+                    $('#nombre').after('<small style="color: white;">Nombre disponible.</small>');
+                    statusBar.addClass('green');
+                }
+            }
+        });
+    } else {
+        $('#nombre').next('small').remove();
+    }
+});
+

@@ -31,11 +31,51 @@
             <div class="card-body">
               <!-- FORMULARIO PARA AGREGAR PRODUCTO -->
               <form id="product-form">
+                <input type="hidden" id="producto_id">
                 <div class="form-group">
-                  <input class="form-control" type="text" id="name" placeholder="Nombre de producto">
+                  <p>Nombre:<input type="text" name="nombre" id="nombre" placeholder="Maximo 100 caracteres"></p>
+                  <div id="nombreStatus" class="d-none"></div>
                 </div>
                 <div class="form-group">
-                  <textarea class="form-control" id="description" cols="30" rows="10" placeholder="JSON de producto"></textarea>
+
+                  <p>Marca: 
+                    <select name="marca" size="1" id="marca"> 
+        
+                      <option value="Samsung">Samsung</option>
+                      <option value="Apple">Apple</option>
+                      <option value="Xiaomi">Xiaomi</option>
+                      <option value="Motorola">Motorola</option>
+                      <option value="Huawei">Huawei</option>
+                      <option value="Nokia">Nokia</option>
+                      <option value="Redmi">Redmi</option>
+              
+              
+              
+                      </select>
+
+                  </p>
+
+                  <div id="marcaStatus" class="d-none"></div>
+                </div>
+                <div class="form-group">
+                  <p>Modelo: <input type="text" id="modelo" name="modelo" placeholder="Maximo 25 caracteres"></p>
+                  <div id="modeloStatus" class="d-none"></div>
+                </div>
+                <div class="form-group">
+                  <p>Precio: <input  type="number" name="precio"  step="0.01" min="0" id="precio" placeholder="Precio minimo de 100" name="precio"></p>
+                  <div id="precioStatus" class="d-none"></div>
+                </div>
+                <div class="form-group">
+                  <p>Detalles <br> <textarea name="detalles" rows="4" cols="40" maxlength="..." id="detalles" placeholder="Maximo 250 caracteres"></textarea></p>
+                  <div id="detallesStatus" class="d-none"></div>
+                </div>
+                <div class="form-group">
+                  <p>Unidades <input type="number" name="unidades" id="unidades" placeholder="Sin valores negativos"></p>
+                  <div id="unidadesStatus" class="d-none"></div>
+                </div>
+                <div class="form-group">
+                  <p>Imagen <input type="text" name="imagen" placeholder="Pegue la url de su imagen" id="imagen"></p>
+                  <div id="imagenStatus" class="d-none"></div>
                 </div>
                 <input type="hidden" id="productId">
                 <button class="btn btn-primary btn-block text-center" type="submit">
