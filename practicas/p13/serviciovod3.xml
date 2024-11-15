@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE CatalogoVOD SYSTEM "serviciovod.dtd">
+
+
+<CatalogoVOD>
+ 
+  <cuenta correo="erwin.avendano@alumno.buap.mx">
+    
+
+     <perfiles>
+
+         <perfil usuario="Erwin" idioma="Español"></perfil>
+
+         <perfil usuario="Gael" idioma="Ingles"></perfil>
+
+     </perfiles>
+  </cuenta>
+
+
+
+  <contenido>
+
+      <peliculas>
+           <genero nombre="Acción">
+                  
+                <titulo duración="131 minutos">
+                    &lt;video id=&quot;11&quot;&gt;&amp;lt;&lt;/video&gt;
+                </titulo>
+                        
+                <titulo duración="113 minutos">
+                   <![CDATA[<video id="11">&lt;</video>]]>
+
+                </titulo>
+
+                <titulo duración="131 minutos">
+
+                     Batalla naval
+
+                </titulo>
+
+                <titulo duración="120 minutos">
+                    Mad Max: furia en el camino
+
+                </titulo>
+
+           </genero>
+
+           <genero nombre="Terror">
+
+                <titulo duración="115 minutos">
+                     El aro
+
+                </titulo>
+
+                <titulo duración="93 minutos">
+                    Nadie podrá salvarte
+                </titulo>
+
+                <titulo duración="135 minutos">
+
+                    Eso
+                </titulo>
+                
+                <titulo duración="110 minutos">
+
+                       Siniestro
+                </titulo>
+
+               
+
+           </genero>
+
+      </peliculas>
+
+
+
+
+      <programas>
+             <genero nombre="Superhéroes">
+
+                 <titulo duración="6 episodios">
+                       Moon knight
+
+                 </titulo>
+
+                 <titulo duración="12 episodios">
+                       Loki
+
+                 </titulo>
+
+                 <titulo duración="18 episodios">
+
+                     What if...?
+
+                 </titulo>
+
+                 <titulo duración="8 episodios">
+
+                     Peacemaker
+                 </titulo>
+
+             </genero >
+
+
+             <genero nombre="Suspenso">
+
+                 <titulo duración="26 episodios">
+                      Dark
+
+                 </titulo>
+
+                 <titulo duración="8 episodios">
+                      El problema de los 3 cuerpos
+
+                 </titulo>
+                
+
+                 <titulo duración="10 episodios">
+                    El visitante
+
+                 </titulo>
+
+                 <titulo duración="30 episodios">
+                   From
+
+                 </titulo>
+                   
+             </genero>
+
+      </programas>
+
+  </contenido>
+
+
+</CatalogoVOD>

@@ -1,0 +1,11 @@
+<!DOCTYPE cinefanatico SYSTEM "cinefanatico.dtd">
+<cinefanatico>
+
+    <tarjeta noserie="111111" visitas="3" puntos="120">
+
+        <nombre>Erwin</nombre>
+        <correo>erwin.avendano@alumno.buap.mx</correo>
+        <telefono tipo="casa">2222222222</telefono>
+        <telefono tipo="movil">111111</telefono>
+    </tarjeta>
+</cinefanatico>
