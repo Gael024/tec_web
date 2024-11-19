@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tw:Spotify xmlns:tw="http://tecnologiasweb.com.mx"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://tecnologiasweb.com.mx spotify_ns.xsd" version="1.0"
+    >
+    <tw:Cuenta id="1" plan="premium" fechaIni="2024-06-11" fechaFin="2024-12-06">
+        <tw:Nombre>Erwin Gael</tw:Nombre>
+        <tw:Correo>erwin.avendano@alumno.buap.mx</tw:Correo>
+        <tw:Telefono Tipo="movil">9516372435</tw:Telefono>
+    </tw:Cuenta>
+    <tw:Cuenta id="2" plan="premiun">
+        <tw:Nombre>Rivaldo Zamorano</tw:Nombre>
+        <tw:Correo>rivaldo.mendez@alumno.buap.mx</tw:Correo>
+        <tw:Telefono Tipo="movil">2214301407</tw:Telefono>
+    </tw:Cuenta>
+    <tw:Cuenta id="3" plan="basico" >
+        <tw:Nombre>Marco Antonio</tw:Nombre>
+        <tw:Correo>marco.antonio@alumno.buap.mx</tw:Correo>  
+    </tw:Cuenta>
+    <tw:Cuenta id="4" plan="basico" fechaIni="2024-07-12" fechaFin="2024-10-25">
+        <tw:Nombre>Andrwe Rodriguez</tw:Nombre>
+        <tw:Correo>andrwe.almanza@alumno.buap.mx</tw:Correo>
+    </tw:Cuenta>
+</tw:Spotify>
