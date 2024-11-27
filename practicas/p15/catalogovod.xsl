@@ -5,13 +5,49 @@
         <html>
             <head>
                 <title>Practica 15</title>
+                <style type="text/css">
+                    
+                    h1 {margin-left: 600px}
+         			table {border: 1px solid; width: 70%; margin-left:200px}
+                    th {text-align: center; background-color: orange;}
+                    td {text-align: center;}
+                    img {width: 500px; height: auto; display: block; margin: 0 auto;}
+                    h3{margin-left:670px}
+                
+         		</style>
                
             </head>
             <body>
-                     <h1>Practica 15</h1>
-            <table>
-               <thead>
+                 <img src="Logo.jpg"/>
+                     <h3>CUENTA</h3>
+                 <table>
+                     <thead>
+                        
+                        <tr>
+                           <th>Correo</th>
+                           <th>Perfiles</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                            <td><xsl:value-of select="//cuenta/@correo"/></td>
+                            <td>
+                                <xsl:for-each select="//cuenta/perfiles/perfil">
+                                    <p><xsl:value-of select="@usuario"/> (Idioma: <xsl:value-of select="@idioma"/>)</p>
+                                </xsl:for-each>
+                            </td>
+                        </tr>
+                     </tbody>
+                 </table>
 
+                     <h1>Catalogo disponible</h1>
+            <table border="1">
+               <thead>
+                  
+                  <tr>
+                     <th colspan="3">PELICULAS</th>
+                  </tr>
+                   
                   <tr>
                       <th>Titulo</th>
                       <th>Duración</th>
@@ -33,9 +69,13 @@
                
                </tbody>
             </table>
-
-             <table>
+               <br></br>
+             <table border="1">
                <thead>
+
+                  <tr>
+                    <th colspan="3">SERIES</th>
+                  </tr>
 
                   <tr>
                       <th>Titulo</th>
